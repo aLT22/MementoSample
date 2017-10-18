@@ -3,15 +3,16 @@ package com.bytebuilding.mementosampleproject;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
@@ -20,13 +21,14 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class MainActivity extends AppCompatActivity {
     Button buttonStart, buttonStop, buttonPlayLastRecordAudio,
-            buttonStopPlayingRecording ;
+            buttonStopPlayingRecording;
     String AudioSavePathInDevice = null;
-    MediaRecorder mediaRecorder ;
-    Random random ;
+    MediaRecorder mediaRecorder;
+    Random random;
     String RandomAudioFileName = "ABCDEFGHIJKLMNOP";
     public static final int RequestPermissionCode = 1;
-    MediaPlayer mediaPlayer ;
+    MediaPlayer mediaPlayer;
+    File file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         buttonStart = (Button) findViewById(R.id.button);
         buttonStop = (Button) findViewById(R.id.button2);
         buttonPlayLastRecordAudio = (Button) findViewById(R.id.button3);
-        buttonStopPlayingRecording = (Button)findViewById(R.id.button4);
+        buttonStopPlayingRecording = (Button) findViewById(R.id.button4);
 
         buttonStop.setEnabled(false);
         buttonPlayLastRecordAudio.setEnabled(false);
@@ -44,15 +46,17 @@ public class MainActivity extends AppCompatActivity {
 
         random = new Random();
 
+        file = new File(Environment.getExternalStorageDirectory() + "/" + "Memento Sample");
+
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(checkPermission()) {
+                if (checkPermission()) {
 
-                    AudioSavePathInDevice =
-                            Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +
-                                    CreateRandomAudioFileName(5) + "AudioRecording.3gp";
+                    file.mkdirs();
+                    AudioSavePathInDevice = Environment.getExternalStorageDirectory() + "/" +
+                            "Memento Sample" + "/" + CreateRandomAudioFileName(5) + "AudioRecording.3gp";
 
                     MediaRecorderReady();
 
@@ -124,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 buttonStopPlayingRecording.setEnabled(false);
                 buttonPlayLastRecordAudio.setEnabled(true);
 
-                if(mediaPlayer != null){
+                if (mediaPlayer != null) {
                     mediaPlayer.stop();
                     mediaPlayer.release();
                     MediaRecorderReady();
@@ -134,22 +138,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void MediaRecorderReady(){
-        mediaRecorder=new MediaRecorder();
+    public void MediaRecorderReady() {
+        mediaRecorder = new MediaRecorder();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         mediaRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
         mediaRecorder.setOutputFile(AudioSavePathInDevice);
     }
 
-    public String CreateRandomAudioFileName(int string){
-        StringBuilder stringBuilder = new StringBuilder( string );
-        int i = 0 ;
-        while(i < string ) {
+    public String CreateRandomAudioFileName(int string) {
+        StringBuilder stringBuilder = new StringBuilder(string);
+        int i = 0;
+        while (i < string) {
             stringBuilder.append(RandomAudioFileName.
                     charAt(random.nextInt(RandomAudioFileName.length())));
 
-            i++ ;
+            i++;
         }
         return stringBuilder.toString();
     }
@@ -164,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                                            String permissions[], int[] grantResults) {
         switch (requestCode) {
             case RequestPermissionCode:
-                if (grantResults.length> 0) {
+                if (grantResults.length > 0) {
                     boolean StoragePermission = grantResults[0] ==
                             PackageManager.PERMISSION_GRANTED;
                     boolean RecordPermission = grantResults[1] ==
@@ -174,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Permission Granted",
                                 Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(MainActivity.this,"Permission Denied",Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_LONG).show();
                     }
                 }
                 break;
@@ -182,13 +186,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean checkPermission() {
-        int result = ContextCompat.checkSelfPermission(getApplicationContext(),
+        int writeExternalStorageResult = ContextCompat.checkSelfPermission(getApplicationContext(),
                 WRITE_EXTERNAL_STORAGE);
-        int result1 = ContextCompat.checkSelfPermission(getApplicationContext(),
+        int recordAudioResult = ContextCompat.checkSelfPermission(getApplicationContext(),
                 RECORD_AUDIO);
-        return result == PackageManager.PERMISSION_GRANTED &&
-                result1 == PackageManager.PERMISSION_GRANTED;
+        return writeExternalStorageResult == PackageManager.PERMISSION_GRANTED &&
+                recordAudioResult == PackageManager.PERMISSION_GRANTED;
     }
-
-
 }
