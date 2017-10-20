@@ -89,7 +89,6 @@ public class SecondSlide extends Fragment {
         super.onDestroyView();
 
         mUnbinder.unbind();
-        mDisposable.dispose();
     }
 
     private void catcherEvents() {
@@ -116,5 +115,13 @@ public class SecondSlide extends Fragment {
                                 }
                             }
                         }));
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+
+        mDisposable.dispose();
     }
 }

@@ -6,9 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.bytebuilding.memento.R;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+
+    private CompositeDisposable mDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,5 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Start the thread
         t.start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        mDisposable.dispose();
     }
 }

@@ -31,20 +31,6 @@ public class IntroActivity extends AppIntro {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mDisposable.add(Observable
-                .interval(100, TimeUnit.MILLISECONDS, Schedulers.io())
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        if (UiEvents.ChangeArrowColorEvent.sArrowIndex == 6) {
-                            UiEvents.ChangeArrowColorEvent.sArrowIndex = 0;
-                        } else {
-                            UiEvents.ChangeArrowColorEvent.sArrowIndex++;
-                        }
-                        MementoApplication.bus().send(new UiEvents.ChangeArrowColorEvent());
-                    }
-                }));
-
         addSlide(ChooseLanguageFragment.newInstance());
 
         addSlide(FirstSlide.newInstance());
