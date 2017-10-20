@@ -9,22 +9,27 @@ import android.view.ViewGroup;
 
 import com.bytebuilding.memento.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ChooseLanguageFragment extends Fragment {
 
+    public static ChooseLanguageFragment newInstance() {
+        ChooseLanguageFragment fragment = new ChooseLanguageFragment();
 
-    public ChooseLanguageFragment() {
-        // Required empty public constructor
+        return fragment;
     }
 
+    public static ChooseLanguageFragment newInstance(Bundle bundle) {
+        ChooseLanguageFragment fragment = new ChooseLanguageFragment();
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_choose_language, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_choose_language, container, false);
+
+        return rootView;
     }
 
 }
