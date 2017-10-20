@@ -11,10 +11,15 @@ public class MementoRxBus {
 
     private PublishSubject<Object> mBus = PublishSubject.create();
 
-    public MementoRxBus() {}
+    public MementoRxBus() {
+    }
 
     public Observable<Object> observable() {
         return this.mBus;
+    }
+
+    public void send(Object o) {
+        mBus.onNext(o);
     }
 
 }

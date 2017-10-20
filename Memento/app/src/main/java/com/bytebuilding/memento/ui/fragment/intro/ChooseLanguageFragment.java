@@ -1,4 +1,4 @@
-package com.bytebuilding.memento.ui.fragment;
+package com.bytebuilding.memento.ui.fragment.intro;
 
 
 import android.os.Bundle;
