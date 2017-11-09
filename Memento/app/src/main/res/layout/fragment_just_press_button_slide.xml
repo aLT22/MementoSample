@@ -4,7 +4,7 @@
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
                                              android:background="@color/colorPrimaryLight"
-                                             tools:context="com.bytebuilding.memento.ui.fragment.intro.SecondSlide">
+                                             tools:context="com.bytebuilding.memento.ui.fragment.intro.JustPressButtonSlide">
 
     <TextView
         android:id="@+id/tv_memento"
@@ -32,7 +32,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:gravity="center"
-        android:text="Just press the button and say what you want to remember"
+        android:text="@string/tutorial_one"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/g_central_horizontal_second"

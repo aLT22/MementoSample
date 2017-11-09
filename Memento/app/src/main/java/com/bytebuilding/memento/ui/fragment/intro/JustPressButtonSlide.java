@@ -22,9 +22,9 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class SecondSlide extends Fragment {
+public class JustPressButtonSlide extends Fragment {
 
-    public static final String TAG = SecondSlide.class.getSimpleName();
+    public static final String TAG = JustPressButtonSlide.class.getSimpleName();
 
     @BindView(R.id.iv_arrow_down_4dp)
     ImageView mArrowDown4;
@@ -53,8 +53,8 @@ public class SecondSlide extends Fragment {
 
     private ImageView[] mImageArrows = new ImageView[7];
 
-    public static SecondSlide newInstance() {
-        SecondSlide fragment = new SecondSlide();
+    public static JustPressButtonSlide newInstance() {
+        JustPressButtonSlide fragment = new JustPressButtonSlide();
 
         return fragment;
     }
@@ -67,7 +67,7 @@ public class SecondSlide extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_second_slide, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_just_press_button_slide, container, false);
 
         mUnbinder = ButterKnife.bind(this, rootView);
 

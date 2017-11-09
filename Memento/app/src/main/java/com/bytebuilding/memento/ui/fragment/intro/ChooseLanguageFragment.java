@@ -6,10 +6,26 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.bytebuilding.memento.R;
+import com.bytebuilding.memento.events.ui.UiEvents;
+import com.bytebuilding.memento.utils.MementoApplication;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 public class ChooseLanguageFragment extends Fragment {
+
+    @BindView(R.id.ib_rus)
+    ImageButton mRusLang;
+
+    @BindView(R.id.ib_uk)
+    ImageButton mUkLang;
+
+    private Unbinder mUnbinder = null;
 
     public static ChooseLanguageFragment newInstance() {
         ChooseLanguageFragment fragment = new ChooseLanguageFragment();
@@ -29,7 +45,29 @@ public class ChooseLanguageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_choose_language, container, false);
 
+        mUnbinder = ButterKnife.bind(this, rootView);
+
         return rootView;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        mUnbinder.unbind();
+    }
+
+    @OnClick(R.id.ib_rus)
+    public void onRusButtonClick() {
+        MementoApplication
+                .bus()
+                .send(new UiEvents.ChooseRussianLanguageEvent());
+    }
+
+    @OnClick(R.id.ib_uk)
+    public void onUkButtonClick() {
+        MementoApplication
+                .bus()
+                .send(new UiEvents.ChooseEnglishLanguageEvent());
+    }
 }

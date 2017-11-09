@@ -7,4 +7,5 @@
     <color name="colorPrimaryLight">#64B5F6</color>
     <color name="colorWhite">#FFFFFFFF</color>
     <color name="colorGray">#cacaca</color>
+    <color name="colorBlack">#000000</color>
 </resources>

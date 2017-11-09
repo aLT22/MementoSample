@@ -4,7 +4,7 @@
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
                                              android:background="@color/colorPrimaryLight"
-                                             tools:context="com.bytebuilding.memento.ui.fragment.intro.FirstSlide">
+                                             tools:context="com.bytebuilding.memento.ui.fragment.intro.IntroductionSlide">
 
     <TextView
         android:id="@+id/tv_memento"
@@ -37,9 +37,9 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/ic_speaking"
         app:layout_constraintBottom_toTopOf="@+id/g_central_horizontal"
-        app:layout_constraintRight_toLeftOf="@+id/g_central_vertical"/>
+        app:layout_constraintRight_toLeftOf="@+id/g_central_vertical"
+        android:src="@drawable/ic_speaking"/>
 
     <ImageView
         android:id="@+id/iv_smartphone"
@@ -58,7 +58,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="Welcome to Memento. All you want to keep in mind here!"
+        android:text="@string/welcome_memento"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
