@@ -9,6 +9,7 @@ import com.bytebuilding.memento.events.ui.UiEvents;
 import com.bytebuilding.memento.ui.fragment.intro.ChooseLanguageFragment;
 import com.bytebuilding.memento.ui.fragment.intro.IntroductionSlide;
 import com.bytebuilding.memento.ui.fragment.intro.JustPressButtonSlide;
+import com.bytebuilding.memento.ui.fragment.intro.PressOnceMoreSlide;
 import com.bytebuilding.memento.utils.AppUtilities;
 import com.bytebuilding.memento.utils.MementoApplication;
 import com.github.paolorotolo.appintro.AppIntro;
@@ -26,6 +27,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Turkin A. on 20.10.2017.
  */
 
+// TODO: 09.11.17 In the future the screen should be changed to MVP concept like other screens
 public class IntroActivity extends AppIntro {
 
     public static final String TAG = IntroActivity.class.getSimpleName();
@@ -46,6 +48,8 @@ public class IntroActivity extends AppIntro {
         addSlide(IntroductionSlide.newInstance());
 
         addSlide(JustPressButtonSlide.newInstance());
+
+        addSlide(PressOnceMoreSlide.newInstance());
 
         showSkipButton(false);
         setProgressButtonEnabled(true);

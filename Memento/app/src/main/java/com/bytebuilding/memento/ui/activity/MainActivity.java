@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                boolean isFirstStart = mPreferences.getBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, true);
+                //boolean isFirstStart = mPreferences.getBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, true);
 
-                if (isFirstStart) {
+                if (true) {
                     final Intent i = new Intent(MainActivity.this, IntroActivity.class);
 
                     runOnUiThread(new Runnable() {
@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
-                    mPreferencesEditor.putBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, false);
-                    mPreferencesEditor.apply();
+                    /*mPreferencesEditor.putBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, false);
+                    mPreferencesEditor.apply();*/
                 } else {
                 }
             }
