@@ -7,4 +7,5 @@
     <string name="welcome_memento">Welcome to Memento. All you want to keep in mind here!</string>
     <string name="tutorial_one">Just press the button and say what you want to remember</string>
     <string name="tutorial_two">Press once more to make a pause. Of course you can resume recording if you want! Just press the button again.</string>
+    <string name="stop_recording">Press continuously on button to stop recording and to save information in Memento folder!</string>
 </resources>

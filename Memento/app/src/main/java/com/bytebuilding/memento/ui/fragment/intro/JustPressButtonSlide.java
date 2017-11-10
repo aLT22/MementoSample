@@ -121,7 +121,6 @@ public class JustPressButtonSlide extends Fragment {
     public void onDestroy() {
         super.onDestroy();
 
-
         mDisposable.dispose();
     }
 }

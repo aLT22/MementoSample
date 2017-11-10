@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class ChooseLanguageFragment extends Fragment {
+public class ChooseLanguageSlide extends Fragment {
 
     @BindView(R.id.ib_rus)
     ImageButton mRusLang;
@@ -27,14 +27,14 @@ public class ChooseLanguageFragment extends Fragment {
 
     private Unbinder mUnbinder = null;
 
-    public static ChooseLanguageFragment newInstance() {
-        ChooseLanguageFragment fragment = new ChooseLanguageFragment();
+    public static ChooseLanguageSlide newInstance() {
+        ChooseLanguageSlide fragment = new ChooseLanguageSlide();
 
         return fragment;
     }
 
-    public static ChooseLanguageFragment newInstance(Bundle bundle) {
-        ChooseLanguageFragment fragment = new ChooseLanguageFragment();
+    public static ChooseLanguageSlide newInstance(Bundle bundle) {
+        ChooseLanguageSlide fragment = new ChooseLanguageSlide();
         fragment.setArguments(bundle);
 
         return fragment;
@@ -43,7 +43,7 @@ public class ChooseLanguageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_choose_language, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_choose_language_slide, container, false);
 
         mUnbinder = ButterKnife.bind(this, rootView);
 

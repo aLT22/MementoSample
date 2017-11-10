@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.bytebuilding.memento.events.ui.UiEvents;
-import com.bytebuilding.memento.ui.fragment.intro.ChooseLanguageFragment;
+import com.bytebuilding.memento.ui.fragment.intro.ChooseLanguageSlide;
 import com.bytebuilding.memento.ui.fragment.intro.IntroductionSlide;
 import com.bytebuilding.memento.ui.fragment.intro.JustPressButtonSlide;
 import com.bytebuilding.memento.ui.fragment.intro.PressOnceMoreSlide;
+import com.bytebuilding.memento.ui.fragment.intro.StopRecordingSlide;
 import com.bytebuilding.memento.utils.AppUtilities;
 import com.bytebuilding.memento.utils.MementoApplication;
 import com.github.paolorotolo.appintro.AppIntro;
@@ -41,15 +42,11 @@ public class IntroActivity extends AppIntro {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        MementoApplication.getAppComponent().inject(this);
+
         catchEvents();
 
-        addSlide(ChooseLanguageFragment.newInstance());
-
-        addSlide(IntroductionSlide.newInstance());
-
-        addSlide(JustPressButtonSlide.newInstance());
-
-        addSlide(PressOnceMoreSlide.newInstance());
+        setTutorialSlides();
 
         showSkipButton(false);
         setProgressButtonEnabled(true);
@@ -99,5 +96,17 @@ public class IntroActivity extends AppIntro {
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
         recreate();
+    }
+
+    private void setTutorialSlides() {
+        addSlide(ChooseLanguageSlide.newInstance());
+
+        addSlide(IntroductionSlide.newInstance());
+
+        addSlide(JustPressButtonSlide.newInstance());
+
+        addSlide(PressOnceMoreSlide.newInstance());
+
+        addSlide(StopRecordingSlide.newInstance());
     }
 }

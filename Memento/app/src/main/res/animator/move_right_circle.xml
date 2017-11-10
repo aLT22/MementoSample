@@ -2,7 +2,7 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android">
 
     <objectAnimator
-        android:duration="200"
+        android:duration="1000"
         android:propertyName="pathData"
         android:repeatCount="infinite"
         android:repeatMode="reverse"
@@ -11,7 +11,7 @@
         android:valueType="pathType"/>
 
     <objectAnimator
-        android:duration="200"
+        android:duration="1000"
         android:propertyName="pathData"
         android:repeatCount="infinite"
         android:repeatMode="reverse"
