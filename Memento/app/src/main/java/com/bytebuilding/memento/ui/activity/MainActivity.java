@@ -3,20 +3,30 @@ package com.bytebuilding.memento.ui.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
+import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.bytebuilding.memento.R;
 import com.bytebuilding.memento.utils.AppUtilities;
 import com.bytebuilding.memento.utils.MementoApplication;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends MvpAppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+
+    @BindView(R.id.rv_memento_list)
+    RecyclerView mMementoList;
 
     @Inject
     SharedPreferences mPreferences;
@@ -26,19 +36,36 @@ public class MainActivity extends AppCompatActivity {
 
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
+    private Unbinder mUnbinder = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         MementoApplication.getAppComponent().inject(this);
 
+        startTutorialScreen();
+
+        setContentView(R.layout.activity_main);
+
+        mUnbinder = ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        mDisposable.dispose();
+        mUnbinder.unbind();
+    }
+
+    private synchronized void startTutorialScreen() {
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                //boolean isFirstStart = mPreferences.getBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, true);
+                boolean isFirstStart = mPreferences.getBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, true);
 
-                if (true) {
+                if (isFirstStart) {
                     final Intent i = new Intent(MainActivity.this, IntroActivity.class);
 
                     runOnUiThread(new Runnable() {
@@ -49,22 +76,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
-                    /*mPreferencesEditor.putBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, false);
-                    mPreferencesEditor.apply();*/
-                } else {
+                    mPreferencesEditor.putBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, false);
+                    mPreferencesEditor.apply();
                 }
             }
         }
         );
-
-        // Start the thread
         t.start();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        mDisposable.dispose();
     }
 }

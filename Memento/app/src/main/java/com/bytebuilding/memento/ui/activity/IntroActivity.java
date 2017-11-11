@@ -1,9 +1,17 @@
 package com.bytebuilding.memento.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Matrix;
+import android.graphics.RectF;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.SharedElementCallback;
+import android.view.View;
 
 import com.bytebuilding.memento.events.ui.UiEvents;
 import com.bytebuilding.memento.ui.fragment.intro.ChooseLanguageSlide;
@@ -15,7 +23,9 @@ import com.bytebuilding.memento.utils.AppUtilities;
 import com.bytebuilding.memento.utils.MementoApplication;
 import com.github.paolorotolo.appintro.AppIntro;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -47,9 +57,15 @@ public class IntroActivity extends AppIntro {
         catchEvents();
 
         setTutorialSlides();
-
         showSkipButton(false);
         setProgressButtonEnabled(true);
+    }
+
+    @Override
+    public void onDonePressed(Fragment currentFragment) {
+        super.onDonePressed(currentFragment);
+
+        startMainActivity();
     }
 
     @Override
@@ -108,5 +124,10 @@ public class IntroActivity extends AppIntro {
         addSlide(PressOnceMoreSlide.newInstance());
 
         addSlide(StopRecordingSlide.newInstance());
+    }
+
+    private void startMainActivity() {
+        Intent mainActivityIntent = new Intent(this, MainActivity.class);
+        startActivity(mainActivityIntent);
     }
 }
