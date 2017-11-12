@@ -8,11 +8,7 @@ import com.arellomobile.mvp.MvpView;
 
 public interface MainView extends MvpView {
 
-    void showMementos();
-
-    void showProgressBar();
-
-    void hideProgressBar();
+    void showMementosScreen();
 
     void showEmptyScreen();
 
