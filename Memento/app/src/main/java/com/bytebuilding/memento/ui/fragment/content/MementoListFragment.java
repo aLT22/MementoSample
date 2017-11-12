@@ -10,8 +10,14 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
+import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.bytebuilding.memento.R;
+import com.bytebuilding.memento.mvp.presenter.MementoListPresenter;
 import com.bytebuilding.memento.mvp.view.MementoListView;
+import com.bytebuilding.memento.ui.adapter.MementoRecyclerAdapter;
+import com.bytebuilding.memento.utils.MementoApplication;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +32,12 @@ public class MementoListFragment extends MvpAppCompatFragment implements Memento
 
     @BindView(R.id.pb_loading)
     ProgressBar mLoading;
+
+    @InjectPresenter
+    MementoListPresenter mPresenter;
+
+    @Inject
+    MementoRecyclerAdapter mAdapter;
 
     private Unbinder mUnbinder = null;
 
@@ -43,13 +55,14 @@ public class MementoListFragment extends MvpAppCompatFragment implements Memento
         return fragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_memento_list, container, false);
 
         mUnbinder = ButterKnife.bind(this, rootView);
+
+        MementoApplication.getAppComponent().inject(this);
 
         return rootView;
     }
