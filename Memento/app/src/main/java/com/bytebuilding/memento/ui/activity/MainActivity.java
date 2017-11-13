@@ -104,12 +104,12 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         if (fragmentsInBackStack == 0) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fl_fragment_container, EmptyContentFragment.newInstance(), EmptyContentFragment.TAG)
+                    .add(R.id.fl_fragment_container, MementoListFragment.newInstance(), EmptyContentFragment.TAG)
                     .commit();
         } else {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fl_fragment_container, EmptyContentFragment.newInstance(), EmptyContentFragment.TAG)
+                    .replace(R.id.fl_fragment_container, MementoListFragment.newInstance(), EmptyContentFragment.TAG)
                     .commit();
         }
     }

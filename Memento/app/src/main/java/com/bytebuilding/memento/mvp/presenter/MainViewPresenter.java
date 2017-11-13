@@ -16,7 +16,7 @@ public class MainViewPresenter extends MvpPresenter<MainView> {
     }
 
     public void setFragment() {
-        if (AppUtilities.isFolderEmpty()) {
+        if (!AppUtilities.isFolderEmpty()) {
             getViewState().showEmptyScreen();
         } else {
             getViewState().showMementosScreen();

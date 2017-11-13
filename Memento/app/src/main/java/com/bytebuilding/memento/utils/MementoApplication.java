@@ -3,7 +3,6 @@ package com.bytebuilding.memento.utils;
 import android.app.Application;
 import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.bytebuilding.memento.di.component.AppComponent;
 import com.bytebuilding.memento.di.component.DaggerAppComponent;
