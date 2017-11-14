@@ -4,14 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.ProgressBar;
 
+import com.alexeyturkin.mementosettingspanel.view.SettingsPanelConstraint;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.bytebuilding.memento.R;
+import com.bytebuilding.memento.events.ui.UiEvents;
 import com.bytebuilding.memento.mvp.presenter.MainViewPresenter;
 import com.bytebuilding.memento.mvp.view.MainView;
 import com.bytebuilding.memento.ui.fragment.content.EmptyContentFragment;
@@ -23,6 +22,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -35,6 +35,9 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
 
     @BindView(R.id.fab)
     FloatingActionButton mFab;
+
+    /*@BindView(R.id.spc_settings)
+    SettingsPanelConstraint mSettingsPanel;*/
 
     @Inject
     SharedPreferences mPreferences;
@@ -98,6 +101,11 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         t.start();
     }
 
+    @OnClick(R.id.fab)
+    public void onFabCLick() {
+        MementoApplication.bus().send(new UiEvents.ShowSettingsEvent());
+    }
+
     @Override
     public void showMementosScreen() {
         int fragmentsInBackStack = getSupportFragmentManager().getBackStackEntryCount();
@@ -143,5 +151,10 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     @Override
     public void stopRecording() {
 
+    }
+
+    @Override
+    public void showSettings() {
+        //mSettingsPanel.slide();
     }
 }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.alexeyturkin.mementosettingspanel.view.SettingsPanelConstraint;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.bytebuilding.memento.R;
@@ -34,6 +35,9 @@ public class MementoListFragment extends MvpAppCompatFragment implements Memento
 
     @BindView(R.id.pb_loading)
     ProgressBar mLoading;
+
+    /*@BindView(R.id.spc_settings)
+    SettingsPanelConstraint mSettingsPanel;*/
 
     @InjectPresenter
     MementoListPresenter mPresenter;
@@ -84,6 +88,7 @@ public class MementoListFragment extends MvpAppCompatFragment implements Memento
         super.onDestroyView();
 
         mUnbinder.unbind();
+        mPresenter.onDestroy();
     }
 
     @Override
@@ -104,5 +109,10 @@ public class MementoListFragment extends MvpAppCompatFragment implements Memento
     @Override
     public void hideProgressBar() {
         mLoading.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showSettings() {
+        //mSettingsPanel.slide();
     }
 }

@@ -5,7 +5,8 @@ import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.bytebuilding.memento.events.ui.DataEvents;
+import com.bytebuilding.memento.events.data.DataEvents;
+import com.bytebuilding.memento.events.ui.UiEvents;
 import com.bytebuilding.memento.mvp.model.MementoModel;
 import com.bytebuilding.memento.mvp.view.MementoListView;
 import com.bytebuilding.memento.ui.adapter.MementoRecyclerAdapter;
@@ -61,7 +62,7 @@ public class MementoListPresenter extends MvpPresenter<MementoListView> {
                         .subscribe(new Consumer<Object>() {
                             @Override
                             public void accept(Object o) throws Exception {
-                                if (o instanceof DataEvents.DataWasFetched) {
+                                if (o instanceof DataEvents.DataWasFetchedEvent) {
                                     Observable
                                             .fromCallable(new Callable<DiffUtil.DiffResult>() {
                                                 @Override
@@ -95,6 +96,8 @@ public class MementoListPresenter extends MvpPresenter<MementoListView> {
                                                     getViewState().hideProgressBar();
                                                 }
                                             });
+                                } else if (o instanceof UiEvents.ShowSettingsEvent) {
+                                    getViewState().showSettings();
                                 }
                             }
                         })

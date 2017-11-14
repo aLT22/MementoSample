@@ -19,4 +19,7 @@ public class UiEvents {
         public static int sArrowIndex = 0;
     }
 
+    public static class ShowSettingsEvent {
+    }
+
 }

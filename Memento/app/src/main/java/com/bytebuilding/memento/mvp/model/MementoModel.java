@@ -2,7 +2,7 @@ package com.bytebuilding.memento.mvp.model;
 
 import android.os.Environment;
 
-import com.bytebuilding.memento.events.ui.DataEvents;
+import com.bytebuilding.memento.events.data.DataEvents;
 import com.bytebuilding.memento.utils.AppUtilities;
 import com.bytebuilding.memento.utils.MementoApplication;
 
@@ -71,7 +71,7 @@ public class MementoModel {
                     public void onComplete() {
                         MementoApplication
                                 .bus()
-                                .send(new DataEvents.DataWasFetched());
+                                .send(new DataEvents.DataWasFetchedEvent());
                     }
                 });
     }

@@ -14,4 +14,6 @@ public interface MementoListView extends MvpView {
 
     void hideProgressBar();
 
+    void showSettings();
+
 }

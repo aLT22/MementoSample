@@ -18,4 +18,6 @@ public interface MainView extends MvpView {
 
     void stopRecording();
 
+    void showSettings();
+
 }
