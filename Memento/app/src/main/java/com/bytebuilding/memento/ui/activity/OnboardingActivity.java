@@ -83,12 +83,33 @@ public class OnboardingActivity extends AppCompatActivity implements OnboardingV
     }
 
     private void setTutorialSlides() {
+        mOnboardingPager.setPageTransformer(true,
+                IntroductionSlide.newInstance().new IntroductionSlidesPageTransformer());
         OnboardingViewPagerAdapter viewPagerAdapter = new OnboardingViewPagerAdapter(getSupportFragmentManager());
         mOnboardingPager.setAdapter(viewPagerAdapter);
         mOnboardingPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                switch (position) {
+                    case 0:
+                        mOnboardingPager.setPageTransformer(true,
+                                IntroductionSlide.newInstance().new IntroductionSlidesPageTransformer());
+                        break;
 
+                    case 1:
+                        mOnboardingPager.setPageTransformer(true,
+                                JustPressButtonSlide.newInstance().new JustPressButtonSlidePageTransformer());
+                        break;
+
+                    case 2:
+                        mOnboardingPager.setPageTransformer(true,
+                                PressOnceMoreSlide.newInstance().new PressOnceMoreSlidePageTransformer());
+                        break;
+
+                    case 3:
+                        mOnboardingPager.setPageTransformer(true,
+                                StopRecordingSlide.newInstance().new StopRecordingSlidePageTransformer());
+                }
             }
 
             @Override

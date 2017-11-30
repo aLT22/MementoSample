@@ -3,6 +3,7 @@ package com.bytebuilding.memento.ui.adapter;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -17,7 +18,7 @@ import com.bytebuilding.memento.utils.AppUtilities;
  * Created by Turkin A. on 30.11.2017.
  */
 
-public class OnboardingViewPagerAdapter extends FragmentStatePagerAdapter implements ViewPager.PageTransformer {
+public class OnboardingViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.PageTransformer {
 
     public static final String TAG = OnboardingViewPagerAdapter.class.getSimpleName();
 

@@ -48,13 +48,9 @@ public class AppUtilities {
         public static final int STOP_RECORDING_SLIDE_PAGE = 3;
 
         //Keys for slides' tags and values
-        public static final int INTRODUCTION_KEY = 0;
         public static final int INTRODUCTION_VALUE = 0;
-        public static final int JUST_PRESS_BUTTON_KEY = 1;
         public static final int JUST_PRESS_BUTTON_VALUE = 1;
-        public static final int PRESS_ONCE_MORE_KEY = 2;
         public static final int PRESS_ONCE_MORE_VALUE = 2;
-        public static final int STOP_RECORDING_KEY = 3;
         public static final int STOP_RECORDING_VALUE = 3;
 
     }
