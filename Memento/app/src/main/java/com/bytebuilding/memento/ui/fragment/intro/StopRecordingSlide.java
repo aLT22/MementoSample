@@ -3,12 +3,16 @@ package com.bytebuilding.memento.ui.fragment.intro;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.bytebuilding.memento.R;
+import com.bytebuilding.memento.utils.AppUtilities;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -16,6 +20,9 @@ import butterknife.Unbinder;
 public class StopRecordingSlide extends Fragment {
 
     public static final String TAG = StopRecordingSlide.class.getCanonicalName();
+
+    @BindView(R.id.tv_description_stop_recording)
+    TextView mDescription;
 
     private Unbinder mUnbinder = null;
 
@@ -38,6 +45,8 @@ public class StopRecordingSlide extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_stop_recording_slide, container, false);
 
+        rootView.setTag(AppUtilities.Constants.STOP_RECORDING_VALUE);
+
         mUnbinder = ButterKnife.bind(this, rootView);
 
         return rootView;
@@ -48,5 +57,30 @@ public class StopRecordingSlide extends Fragment {
         super.onDestroyView();
 
         mUnbinder.unbind();
+    }
+
+    public class StopRecordingSlidePageTransformer implements ViewPager.PageTransformer {
+
+        TextView mDescription;
+
+        @Override
+        public void transformPage(View page, float position) {
+            int pageWidth = page.getWidth();
+
+            if (page.getTag().equals(AppUtilities.Constants.STOP_RECORDING_VALUE)) {
+                mDescription = (TextView) page.findViewById(R.id.tv_description_stop_recording);
+                mDescription.setTranslationX(position * (2 * pageWidth));
+                /*if (position < -1) { // [-Infinity,-1)
+                    // This page is way off-screen to the left.
+                    page.setAlpha(1);
+                } else if (position <= 1) { // [-1,1]
+                    mDescription = (TextView) page.findViewById(R.id.tv_description_stop_recording);
+                    mDescription.setTranslationX(position * (pageWidth / 2));
+                } else { // (1,+Infinity]
+                    // This page is way off-screen to the right.
+                    page.setAlpha(1);
+                }*/
+            }
+        }
     }
 }

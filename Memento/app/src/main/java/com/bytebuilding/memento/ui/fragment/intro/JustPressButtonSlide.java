@@ -5,13 +5,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bytebuilding.memento.R;
 import com.bytebuilding.memento.events.ui.UiEvents;
+import com.bytebuilding.memento.utils.AppUtilities;
 import com.bytebuilding.memento.utils.MementoApplication;
 
 import butterknife.BindView;
@@ -47,6 +50,9 @@ public class JustPressButtonSlide extends Fragment {
     @BindView(R.id.iv_arrow_down_56dp)
     ImageView mArrowDown56;
 
+    @BindView(R.id.tv_description_just_press_button)
+    TextView mDescription;
+
     private Unbinder mUnbinder;
 
     private CompositeDisposable mDisposable = new CompositeDisposable();
@@ -68,6 +74,8 @@ public class JustPressButtonSlide extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_just_press_button_slide, container, false);
+
+        rootView.setTag(AppUtilities.Constants.JUST_PRESS_BUTTON_VALUE);
 
         mUnbinder = ButterKnife.bind(this, rootView);
 
@@ -122,5 +130,30 @@ public class JustPressButtonSlide extends Fragment {
         super.onDestroy();
 
         mDisposable.dispose();
+    }
+
+    public class JustPressButtonSlidePageTransformer implements ViewPager.PageTransformer {
+
+        TextView mDescription;
+
+        @Override
+        public void transformPage(View page, float position) {
+            int pageWidth = page.getWidth();
+
+            if (page.getTag().equals(AppUtilities.Constants.JUST_PRESS_BUTTON_VALUE)) {
+                mDescription = (TextView) page.findViewById(R.id.tv_description_just_press_button);
+                mDescription.setTranslationX(position * (2 * pageWidth));
+                /*if (position < -1) { // [-Infinity,-1)
+                    // This page is way off-screen to the left.
+                    page.setAlpha(1);
+                } else if (position <= 1) { // [-1,1]
+                    mDescription = (TextView) page.findViewById(R.id.tv_description_just_press_button);
+                    mDescription.setTranslationX(position * (pageWidth / 2));
+                } else { // (1,+Infinity]
+                    // This page is way off-screen to the right.
+                    page.setAlpha(1);
+                }*/
+            }
+        }
     }
 }

@@ -114,9 +114,9 @@ public class MementoListPresenter extends MvpPresenter<MementoListView> {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
-
         mModel.freeMemory();
         mDisposable.dispose();
+
+        super.onDestroy();
     }
 }

@@ -7,13 +7,16 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bytebuilding.memento.R;
 import com.bytebuilding.memento.events.ui.UiEvents;
+import com.bytebuilding.memento.utils.AppUtilities;
 import com.bytebuilding.memento.utils.MementoApplication;
 
 import butterknife.BindView;
@@ -55,6 +58,9 @@ public class PressOnceMoreSlide extends Fragment {
     @BindView(R.id.iv_arrow_down_56dp)
     ImageView mArrowDown56;
 
+    @BindView(R.id.tv_description_press_once_more)
+    TextView mDescription;
+
     private Unbinder mUnbinder = null;
 
     private CompositeDisposable mDisposable = new CompositeDisposable();
@@ -80,6 +86,8 @@ public class PressOnceMoreSlide extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_press_once_more_slide, container, false);
 
+        rootView.setTag(AppUtilities.Constants.PRESS_ONCE_MORE_VALUE);
+
         mUnbinder = ButterKnife.bind(this, rootView);
 
         mImageArrows[0] = mArrowDown4;
@@ -91,11 +99,6 @@ public class PressOnceMoreSlide extends Fragment {
         mImageArrows[6] = mArrowDown56;
 
         catcherEvents();
-
-        /*Drawable recordingDrawable = mRecordingIcon.getDrawable();
-        if (recordingDrawable != null && recordingDrawable instanceof Animatable) {
-            ((Animatable) recordingDrawable).start();
-        }*/
 
         return rootView;
     }
@@ -142,5 +145,30 @@ public class PressOnceMoreSlide extends Fragment {
                                 }
                             }
                         }));
+    }
+
+    public class PressOnceMoreSlidePageTransformer implements ViewPager.PageTransformer {
+
+        TextView mDescription;
+
+        @Override
+        public void transformPage(View page, float position) {
+            int pageWidth = page.getWidth();
+
+            if (page.getTag().equals(AppUtilities.Constants.PRESS_ONCE_MORE_VALUE)) {
+                mDescription = (TextView) page.findViewById(R.id.tv_description_press_once_more);
+                mDescription.setTranslationX(position * (2 * pageWidth));
+                /*if (position < -1) { // [-Infinity,-1)
+                    // This page is way off-screen to the left.
+                    page.setAlpha(1);
+                } else if (position <= 1) { // [-1,1]
+                    mDescription = (TextView) page.findViewById(R.id.tv_description_press_once_more);
+                    mDescription.setTranslationX(position * (pageWidth / 2));
+                } else { // (1,+Infinity]
+                    // This page is way off-screen to the right.
+                    page.setAlpha(1);
+                }*/
+            }
+        }
     }
 }

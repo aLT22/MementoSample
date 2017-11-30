@@ -9,12 +9,6 @@ public class UiEvents {
     private UiEvents() {
     }
 
-    public static class ChooseRussianLanguageEvent {
-    }
-
-    public static class ChooseEnglishLanguageEvent {
-    }
-
     public static class ChangeArrowColorEvent {
         public static int sArrowIndex = 0;
     }

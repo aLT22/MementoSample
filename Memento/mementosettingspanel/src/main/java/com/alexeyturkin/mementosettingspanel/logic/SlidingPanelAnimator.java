@@ -18,7 +18,7 @@ import android.view.animation.TranslateAnimation;
  * Created by Turkin A. on 14.11.2017.
  */
 
-public final class SettingsPanelAnimator {
+public final class SlidingPanelAnimator {
 
     public void playAnimation(final View targetSettingsPanel,
                               int speed,

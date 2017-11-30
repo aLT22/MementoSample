@@ -5,8 +5,8 @@ import com.bytebuilding.memento.di.module.MementoModelModule;
 import com.bytebuilding.memento.di.module.RecyclerViewAdapterModule;
 import com.bytebuilding.memento.di.module.SharedPreferencesModule;
 import com.bytebuilding.memento.mvp.presenter.MementoListPresenter;
-import com.bytebuilding.memento.ui.activity.IntroActivity;
 import com.bytebuilding.memento.ui.activity.MainActivity;
+import com.bytebuilding.memento.ui.activity.OnboardingActivity;
 import com.bytebuilding.memento.ui.fragment.content.MementoListFragment;
 
 import javax.inject.Singleton;
@@ -27,7 +27,7 @@ public interface AppComponent {
     //Activities
     void inject(MainActivity mainActivity);
 
-    void inject(IntroActivity introActivity);
+    void inject(OnboardingActivity onboardingActivity);
 
     //Fragments
     void inject(MementoListFragment mementoListFragment);

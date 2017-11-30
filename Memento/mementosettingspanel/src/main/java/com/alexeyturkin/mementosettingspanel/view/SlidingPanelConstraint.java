@@ -4,20 +4,18 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.alexeyturkin.mementosettingspanel.R;
-import com.alexeyturkin.mementosettingspanel.logic.SettingsPanelAnimator;
+import com.alexeyturkin.mementosettingspanel.logic.SlidingPanelAnimator;
 import com.alexeyturkin.mementosettingspanel.utils.Utilities;
 
 /**
  * Created by Turkin A. on 13.11.2017.
  */
 
-public class SettingsPanelConstraint extends ConstraintLayout {
+public class SlidingPanelConstraint extends ConstraintLayout {
 
     //Attributes
     private int attrSpeed = Utilities.DEFAULT_ANIMATION_SPEED;
@@ -28,11 +26,11 @@ public class SettingsPanelConstraint extends ConstraintLayout {
     private boolean isOnTheScreen = false;
     private Animation fadeAnimation = null;
 
-    public SettingsPanelConstraint(Context context) {
+    public SlidingPanelConstraint(Context context) {
         super(context);
     }
 
-    public SettingsPanelConstraint(Context context, AttributeSet attrs) {
+    public SlidingPanelConstraint(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         TypedArray a = context.obtainStyledAttributes(attrs,
@@ -55,7 +53,7 @@ public class SettingsPanelConstraint extends ConstraintLayout {
         } else {
             this.clearFocus();
         }
-        SettingsPanelAnimator animator = new SettingsPanelAnimator();
+        SlidingPanelAnimator animator = new SlidingPanelAnimator();
         animator.playAnimation(this,
                 attrSpeed, isOnTheScreen, fadeAnimation, attrDirection, attrInterpolator);
     }

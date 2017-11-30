@@ -34,15 +34,28 @@ public class AppUtilities {
         private Constants() {
         }
 
+        public static final String APP_NAME = "Memento";
+
         //Shared preferences constants
         public static final String SHARED_PREFERENCES_NAME = "MementoPreferences";
         public static final String KEY_APP_FIRST_START = "firstStart";
-        public static final String KEY_APP_LANGUAGE = "appLanguage";
 
-        //Language constants
-        public static final String RU = "ru";
-        public static final String EN = "en";
-        public static final String APP_NAME = "Memento";
+        //Constants for onboarding ViewPager
+        public static final int PAGES_COUNT = 4;
+        public static final int INTRODUCTION_SLIDE_PAGE = 0;
+        public static final int JUST_PRESS_BUTTON_SLIDE_PAGE = 1;
+        public static final int PRESS_ONCE_MORE_SLIDE_PAGE = 2;
+        public static final int STOP_RECORDING_SLIDE_PAGE = 3;
+
+        //Keys for slides' tags and values
+        public static final int INTRODUCTION_KEY = 0;
+        public static final int INTRODUCTION_VALUE = 0;
+        public static final int JUST_PRESS_BUTTON_KEY = 1;
+        public static final int JUST_PRESS_BUTTON_VALUE = 1;
+        public static final int PRESS_ONCE_MORE_KEY = 2;
+        public static final int PRESS_ONCE_MORE_VALUE = 2;
+        public static final int STOP_RECORDING_KEY = 3;
+        public static final int STOP_RECORDING_VALUE = 3;
 
     }
 

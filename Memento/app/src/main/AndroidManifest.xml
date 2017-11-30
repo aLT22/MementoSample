@@ -21,9 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".ui.activity.IntroActivity"
+            android:name=".ui.activity.OnboardingActivity"
             android:screenOrientation="portrait"/>
     </application>
 

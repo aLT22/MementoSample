@@ -26,7 +26,7 @@
         app:layout_constraintGuide_percent="0.2"/>
 
     <TextView
-        android:id="@+id/tv_description"
+        android:id="@+id/tv_description_just_press_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"

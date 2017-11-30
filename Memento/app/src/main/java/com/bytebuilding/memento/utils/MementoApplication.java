@@ -42,16 +42,13 @@ public class MementoApplication extends Application {
                 .interval(100, TimeUnit.MILLISECONDS, Schedulers.io())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        if (UiEvents.ChangeArrowColorEvent.sArrowIndex == 6) {
-                            UiEvents.ChangeArrowColorEvent.sArrowIndex = 0;
-                        } else {
-                            UiEvents.ChangeArrowColorEvent.sArrowIndex++;
-                        }
-                        MementoApplication.bus().send(new UiEvents.ChangeArrowColorEvent());
+                .subscribe(aLong -> {
+                    if (UiEvents.ChangeArrowColorEvent.sArrowIndex == 6) {
+                        UiEvents.ChangeArrowColorEvent.sArrowIndex = 0;
+                    } else {
+                        UiEvents.ChangeArrowColorEvent.sArrowIndex++;
                     }
+                    MementoApplication.bus().send(new UiEvents.ChangeArrowColorEvent());
                 });
 
         appFolderCreation();

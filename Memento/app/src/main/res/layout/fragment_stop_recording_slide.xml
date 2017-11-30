@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/tv_description"
+        android:id="@+id/tv_description_stop_recording"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"

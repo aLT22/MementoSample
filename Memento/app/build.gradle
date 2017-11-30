@@ -18,6 +18,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -49,7 +53,8 @@ dependencies {
     compile 'com.arello-mobile:moxy-app-compat:1.5.3'
     compile 'com.arello-mobile:moxy-android:1.5.3'
     annotationProcessor 'com.arello-mobile:moxy-compiler:1.5.3'
-
     //Custom view (Custom settings panel)
-    implementation project(':mementosettingspanel')
+    compile 'com.github.RELEX-Group:SlidingPanel:0.1'
+    //PagerIndicator
+    compile 'com.romandanylyk:pageindicatorview:0.2.0@aar'
 }

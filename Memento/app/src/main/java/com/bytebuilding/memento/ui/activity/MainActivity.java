@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 
-import com.alexeyturkin.mementosettingspanel.view.SettingsPanelConstraint;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.bytebuilding.memento.R;
@@ -69,32 +68,30 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-
         mDisposable.dispose();
         mUnbinder.unbind();
+        mPresenter.onDestroy();
+
+        super.onDestroy();
     }
 
     private synchronized void startTutorialScreen() {
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                boolean isFirstStart = mPreferences.getBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, true);
+        Thread t = new Thread(() -> {
+            boolean isFirstStart = mPreferences.getBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, true);
 
-                if (isFirstStart) {
-                    final Intent i = new Intent(MainActivity.this, IntroActivity.class);
+            if (true) {
+                final Intent i = new Intent(MainActivity.this, OnboardingActivity.class);
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            startActivity(i);
-                            finish();
-                        }
-                    });
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(i);
+                        finish();
+                    }
+                });
 
-                    mPreferencesEditor.putBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, false);
-                    mPreferencesEditor.apply();
-                }
+                mPreferencesEditor.putBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, false);
+                mPreferencesEditor.apply();
             }
         }
         );
@@ -112,12 +109,12 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         if (fragmentsInBackStack == 0) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fl_fragment_container, MementoListFragment.newInstance(), EmptyContentFragment.TAG)
+                    .add(R.id.fl_fragment_container, MementoListFragment.newInstance(), MementoApplication.TAG)
                     .commit();
         } else {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fl_fragment_container, MementoListFragment.newInstance(), EmptyContentFragment.TAG)
+                    .replace(R.id.fl_fragment_container, MementoListFragment.newInstance(), MementoListFragment.TAG)
                     .commit();
         }
     }
