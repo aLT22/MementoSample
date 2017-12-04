@@ -64,8 +64,6 @@ public class StopRecordingSlide extends Fragment {
 
     public class StopRecordingSlidePageTransformer implements ViewPager.PageTransformer {
 
-        TextView mDescription;
-
         @Override
         public void transformPage(View page, float position) {
             IntroAnimator pagerAnimator = new StopRecordingSlideAnimator();

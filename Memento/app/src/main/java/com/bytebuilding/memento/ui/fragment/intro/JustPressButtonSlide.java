@@ -136,8 +136,6 @@ public class JustPressButtonSlide extends Fragment {
 
     public class JustPressButtonSlidePageTransformer implements ViewPager.PageTransformer {
 
-        TextView mDescription;
-
         @Override
         public void transformPage(View page, float position) {
             IntroAnimator pagerAnimator = new JustPressButtonSlideAnimator();

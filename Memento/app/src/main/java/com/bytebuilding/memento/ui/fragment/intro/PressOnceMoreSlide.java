@@ -151,8 +151,6 @@ public class PressOnceMoreSlide extends Fragment {
 
     public class PressOnceMoreSlidePageTransformer implements ViewPager.PageTransformer {
 
-        TextView mDescription;
-
         @Override
         public void transformPage(View page, float position) {
             IntroAnimator pagerAnimator = new PressOnceMoreSlideAnimator();

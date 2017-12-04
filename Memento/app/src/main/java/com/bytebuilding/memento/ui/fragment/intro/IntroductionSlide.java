@@ -59,10 +59,6 @@ public class IntroductionSlide extends Fragment {
 
     public class IntroductionSlidesPageTransformer implements ViewPager.PageTransformer {
 
-        ImageView mSpeakingHead;
-        ImageView mSmartphone;
-        TextView mDescription;
-
         @Override
         public void transformPage(View page, float position) {
             IntroAnimator pagerAnimator = new IntroductionSlideAnimator();
