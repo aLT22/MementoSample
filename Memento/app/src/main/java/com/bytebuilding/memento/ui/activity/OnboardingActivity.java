@@ -118,6 +118,7 @@ public class OnboardingActivity extends AppCompatActivity implements OnboardingV
                     case 3:
                         mOnboardingPager.setPageTransformer(true,
                                 StopRecordingSlide.newInstance().new StopRecordingSlidePageTransformer());
+                        break;
                 }
             }
 
@@ -142,6 +143,7 @@ public class OnboardingActivity extends AppCompatActivity implements OnboardingV
                     case 3:
                         mOnboardingPager.setPageTransformer(true,
                                 StopRecordingSlide.newInstance().new StopRecordingSlidePageTransformer());
+                        break;
                 }
             }
 

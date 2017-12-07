@@ -79,15 +79,12 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         Thread t = new Thread(() -> {
             boolean isFirstStart = mPreferences.getBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, true);
 
-            if (true) {
+            if (isFirstStart) {
                 final Intent i = new Intent(MainActivity.this, OnboardingActivity.class);
 
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        startActivity(i);
-                        finish();
-                    }
+                runOnUiThread(() -> {
+                    startActivity(i);
+                    finish();
                 });
 
                 mPreferencesEditor.putBoolean(AppUtilities.Constants.KEY_APP_FIRST_START, false);
