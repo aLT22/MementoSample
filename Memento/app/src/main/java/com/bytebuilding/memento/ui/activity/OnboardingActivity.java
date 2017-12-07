@@ -2,10 +2,15 @@ package com.bytebuilding.memento.ui.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.bytebuilding.memento.R;
@@ -22,6 +27,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -33,6 +39,9 @@ public class OnboardingActivity extends AppCompatActivity implements OnboardingV
 
     @BindView(R.id.vp_onboarding)
     ViewPager mOnboardingPager;
+
+    @BindView(R.id.iv_onboarding_status)
+    ImageView mNextSlide;
 
     @Inject
     SharedPreferences.Editor mPreferencesEditor;
@@ -149,18 +158,30 @@ public class OnboardingActivity extends AppCompatActivity implements OnboardingV
         this.finish();
     }
 
+    @OnClick(R.id.iv_onboarding_status)
+    public void onNextSlideClick() {
+        if (mOnboardingPager.getCurrentItem() != mOnboardingPager.getAdapter().getCount() - 1) {
+            showNextSlide(mOnboardingPager.getCurrentItem() + 1);
+        } else {
+            changeButtonStatus();
+        }
+    }
+
     @Override
     public void showMainView() {
         startMainActivity();
     }
 
     @Override
-    public void showNextSlide() {
-
+    public void showNextSlide(int pageNumber) {
+        mOnboardingPager.setCurrentItem(pageNumber, true);
     }
 
     @Override
     public void changeButtonStatus() {
+        //Button animation
 
+        //Open main screen of application
+        startMainActivity();
     }
 }

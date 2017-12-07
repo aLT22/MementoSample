@@ -10,7 +10,7 @@ public interface OnboardingView extends MvpView {
 
     void showMainView();
 
-    void showNextSlide();
+    void showNextSlide(int pageNumber);
 
     void changeButtonStatus();
 

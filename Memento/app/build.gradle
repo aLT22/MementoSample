@@ -46,15 +46,13 @@ dependencies {
     //ButterKnife
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    //AppIntro
-    compile 'com.github.apl-devs:appintro:v4.2.2'
     //Moxy
     compile 'com.arello-mobile:moxy:1.5.3'
     compile 'com.arello-mobile:moxy-app-compat:1.5.3'
     compile 'com.arello-mobile:moxy-android:1.5.3'
     annotationProcessor 'com.arello-mobile:moxy-compiler:1.5.3'
     //Custom view (Custom settings panel)
-    compile 'com.github.RELEX-Group:SlidingPanel:0.1'
+    compile 'com.github.RELEX-Group:SlidingPanel:0.2'
     //PagerIndicator
     compile 'com.romandanylyk:pageindicatorview:0.2.0@aar'
 }
