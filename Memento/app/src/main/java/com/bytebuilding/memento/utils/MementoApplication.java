@@ -1,9 +1,9 @@
 package com.bytebuilding.memento.utils;
 
 import android.app.Application;
-import android.os.Environment;
 import android.util.Log;
 
+import com.bytebuilding.memento.R;
 import com.bytebuilding.memento.di.component.AppComponent;
 import com.bytebuilding.memento.di.component.DaggerAppComponent;
 import com.bytebuilding.memento.di.module.ApplicationContextModule;
@@ -15,7 +15,6 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -55,8 +54,8 @@ public class MementoApplication extends Application {
     }
 
     private void appFolderCreation() {
-        Log.e(TAG, "appFolderCreation: " + Environment.getExternalStorageDirectory());
-        File folder = new File(Environment.getExternalStorageDirectory() + "/yourDirectoryName");
+        Log.e(TAG, "appFolderCreation: " + this.getFilesDir());
+        File folder = new File(this.getFilesDir() + getResources().getString(R.string.app_name));
         boolean success = true;
         if (!folder.exists()) {
             success = folder.mkdir();

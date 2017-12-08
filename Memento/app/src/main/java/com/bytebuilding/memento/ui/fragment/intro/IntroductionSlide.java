@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bytebuilding.memento.R;
-import com.bytebuilding.memento.ui.animation.IntroAnimator;
-import com.bytebuilding.memento.ui.animation.IntroductionSlideAnimator;
+import com.bytebuilding.memento.ui.animation.intro.IntroAnimator;
+import com.bytebuilding.memento.ui.animation.intro.IntroductionSlideAnimator;
 import com.bytebuilding.memento.utils.AppUtilities;
 
 import butterknife.BindView;
@@ -62,7 +62,7 @@ public class IntroductionSlide extends Fragment {
         @Override
         public void transformPage(View page, float position) {
             IntroAnimator pagerAnimator = new IntroductionSlideAnimator();
-            pagerAnimator.animateSlide(page, position);
+            pagerAnimator.animateSlide(page, position, R.id.tv_description_introduction, AppUtilities.Constants.INTRODUCTION_VALUE);
         }
     }
 }

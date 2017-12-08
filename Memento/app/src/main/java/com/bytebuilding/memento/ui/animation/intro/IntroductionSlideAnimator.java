@@ -1,6 +1,8 @@
-package com.bytebuilding.memento.ui.animation;
+package com.bytebuilding.memento.ui.animation.intro;
 
+import android.support.annotation.IdRes;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bytebuilding.memento.R;
@@ -10,12 +12,17 @@ import com.bytebuilding.memento.utils.AppUtilities;
  * Created by Turkin A. on 04.12.2017.
  */
 
-public class StopRecordingSlideAnimator implements IntroAnimator {
+public class IntroductionSlideAnimator extends IntroAnimator {
 
-    public static final String TAG = StopRecordingSlideAnimator.class.getSimpleName();
+    public static final String TAG = IntroductionSlideAnimator.class.getSimpleName();
 
     @Override
-    public void animateSlide(View page, float position) {
+    public void animateSlide(View page, float position, @IdRes int resId, int animationValue) {
+
+        ImageView mSpeakingHead = (ImageView) page.findViewById(R.id.iv_speaking);
+        ImageView mSmartphone = (ImageView) page.findViewById(R.id.iv_smartphone);
+        TextView mDescription = (TextView) page.findViewById(R.id.tv_description_introduction);
+
         // Get the page index from the tag. This makes
         // it possible to know which page index you're
         // currently transforming - and that can be used
@@ -30,9 +37,7 @@ public class StopRecordingSlideAnimator implements IntroAnimator {
         float pageWidthTimesPosition = pageWidth * position;
         float absPosition = Math.abs(position);
 
-        TextView mDescription = (TextView) page.findViewById(R.id.tv_description_stop_recording);
-
-        if (pagePosition == AppUtilities.Constants.STOP_RECORDING_VALUE) {
+        if (pagePosition == animationValue) {
             // Now it's time for the effects
             if (position <= -1.0f || position >= 1.0f) {
 
@@ -71,6 +76,12 @@ public class StopRecordingSlideAnimator implements IntroAnimator {
                 // In other words, we need to check that we're on
                 // the correct page and that the View in question
                 // isn't null.
+                mSpeakingHead.setAlpha(1.0f - 2 * absPosition);
+                mSmartphone.setAlpha(1.0f - 2 * absPosition);
+                mSpeakingHead.setTranslationY(pageWidthTimesPosition * 1.5f);
+                mSpeakingHead.setTranslationX(-pageWidthTimesPosition);
+                mSmartphone.setTranslationY(pageWidthTimesPosition * 1.5f);
+                mSmartphone.setTranslationX(-pageWidthTimesPosition);
 
                 // Finally, it can be useful to know the direction
                 // of the user's swipe - if we're entering or exiting.

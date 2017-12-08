@@ -10,9 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bytebuilding.memento.R;
-import com.bytebuilding.memento.ui.animation.IntroAnimator;
-import com.bytebuilding.memento.ui.animation.PressOnceMoreSlideAnimator;
-import com.bytebuilding.memento.ui.animation.StopRecordingSlideAnimator;
+import com.bytebuilding.memento.ui.animation.intro.IntroAnimator;
+import com.bytebuilding.memento.ui.animation.intro.StopRecordingSlideAnimator;
 import com.bytebuilding.memento.utils.AppUtilities;
 
 import butterknife.BindView;
@@ -67,7 +66,7 @@ public class StopRecordingSlide extends Fragment {
         @Override
         public void transformPage(View page, float position) {
             IntroAnimator pagerAnimator = new StopRecordingSlideAnimator();
-            pagerAnimator.animateSlide(page, position);
+            pagerAnimator.animateSlide(page, position, R.id.tv_description_stop_recording, AppUtilities.Constants.STOP_RECORDING_VALUE);
         }
     }
 }

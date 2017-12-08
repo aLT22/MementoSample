@@ -85,7 +85,7 @@ public class OnboardingActivity extends AppCompatActivity implements OnboardingV
                 MementoApplication
                         .bus()
                         .observable()
-                        .subscribeOn(Schedulers.newThread())
+                        .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(o -> {
                         }));
@@ -184,6 +184,6 @@ public class OnboardingActivity extends AppCompatActivity implements OnboardingV
         //Button animation
 
         //Open main screen of application
-        startMainActivity();
+        showMainView();
     }
 }

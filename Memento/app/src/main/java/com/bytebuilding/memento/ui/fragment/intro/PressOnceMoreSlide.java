@@ -1,8 +1,6 @@
 package com.bytebuilding.memento.ui.fragment.intro;
 
 
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -16,8 +14,8 @@ import android.widget.TextView;
 
 import com.bytebuilding.memento.R;
 import com.bytebuilding.memento.events.ui.UiEvents;
-import com.bytebuilding.memento.ui.animation.IntroAnimator;
-import com.bytebuilding.memento.ui.animation.PressOnceMoreSlideAnimator;
+import com.bytebuilding.memento.ui.animation.intro.IntroAnimator;
+import com.bytebuilding.memento.ui.animation.intro.PressOnceMoreSlideAnimator;
 import com.bytebuilding.memento.utils.AppUtilities;
 import com.bytebuilding.memento.utils.MementoApplication;
 
@@ -154,7 +152,7 @@ public class PressOnceMoreSlide extends Fragment {
         @Override
         public void transformPage(View page, float position) {
             IntroAnimator pagerAnimator = new PressOnceMoreSlideAnimator();
-            pagerAnimator.animateSlide(page, position);
+            pagerAnimator.animateSlide(page, position, R.id.tv_description_press_once_more, AppUtilities.Constants.PRESS_ONCE_MORE_VALUE);
         }
     }
 }

@@ -1,5 +1,6 @@
-package com.bytebuilding.memento.ui.animation;
+package com.bytebuilding.memento.ui.animation.intro;
 
+import android.support.annotation.IdRes;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,12 +11,9 @@ import com.bytebuilding.memento.utils.AppUtilities;
  * Created by Turkin A. on 04.12.2017.
  */
 
-public class PressOnceMoreSlideAnimator implements IntroAnimator {
+public abstract class IntroAnimator {
 
-    public static final String TAG = PressOnceMoreSlideAnimator.class.getSimpleName();
-
-    @Override
-    public void animateSlide(View page, float position) {
+    public void animateSlide(View page, float position, @IdRes int resId, int animationValue) {
         // Get the page index from the tag. This makes
         // it possible to know which page index you're
         // currently transforming - and that can be used
@@ -30,9 +28,9 @@ public class PressOnceMoreSlideAnimator implements IntroAnimator {
         float pageWidthTimesPosition = pageWidth * position;
         float absPosition = Math.abs(position);
 
-        TextView mDescription = (TextView) page.findViewById(R.id.tv_description_press_once_more);
+        TextView mDescription = (TextView) page.findViewById(resId);
 
-        if (pagePosition == AppUtilities.Constants.PRESS_ONCE_MORE_VALUE) {
+        if (pagePosition == animationValue) {
             // Now it's time for the effects
             if (position <= -1.0f || position >= 1.0f) {
 
@@ -83,4 +81,5 @@ public class PressOnceMoreSlideAnimator implements IntroAnimator {
             }
         }
     }
+
 }

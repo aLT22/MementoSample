@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import com.bytebuilding.memento.R;
 import com.bytebuilding.memento.events.ui.UiEvents;
-import com.bytebuilding.memento.ui.animation.IntroAnimator;
-import com.bytebuilding.memento.ui.animation.JustPressButtonSlideAnimator;
+import com.bytebuilding.memento.ui.animation.intro.IntroAnimator;
+import com.bytebuilding.memento.ui.animation.intro.JustPressButtonSlideAnimator;
 import com.bytebuilding.memento.utils.AppUtilities;
 import com.bytebuilding.memento.utils.MementoApplication;
 
@@ -139,7 +139,7 @@ public class JustPressButtonSlide extends Fragment {
         @Override
         public void transformPage(View page, float position) {
             IntroAnimator pagerAnimator = new JustPressButtonSlideAnimator();
-            pagerAnimator.animateSlide(page, position);
+            pagerAnimator.animateSlide(page, position, R.id.tv_description_just_press_button, AppUtilities.Constants.JUST_PRESS_BUTTON_VALUE);
         }
     }
 }
