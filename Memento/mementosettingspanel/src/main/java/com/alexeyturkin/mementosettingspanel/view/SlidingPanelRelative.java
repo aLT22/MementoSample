@@ -34,10 +34,10 @@ public class SlidingPanelRelative extends RelativeLayout {
         super(context, attrs);
 
         TypedArray a = context.obtainStyledAttributes(attrs,
-                R.styleable.SettingsPanel,
+                R.styleable.SlidingPanel,
                 0, 0);
 
-        attrSpeed = a.getInt(R.styleable.SettingsPanel_speed, Utilities.DEFAULT_ANIMATION_SPEED);
+        attrSpeed = a.getInt(R.styleable.SlidingPanel_speed, Utilities.DEFAULT_ANIMATION_SPEED);
 
         a.recycle();
 

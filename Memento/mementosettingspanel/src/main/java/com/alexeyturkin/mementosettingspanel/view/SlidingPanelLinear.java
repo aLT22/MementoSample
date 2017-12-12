@@ -35,12 +35,12 @@ public class SlidingPanelLinear extends LinearLayout {
         super(context, attrs);
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs,
-                R.styleable.SettingsPanel,
+                R.styleable.SlidingPanel,
                 0, 0);
 
-        attrSpeed = typedArray.getInt(R.styleable.SettingsPanel_speed, Utilities.DEFAULT_ANIMATION_SPEED);
-        attrInterpolator = typedArray.getNonResourceString(R.styleable.SettingsPanel_interpolator);
-        attrDirection = typedArray.getNonResourceString(R.styleable.SettingsPanel_direction);
+        attrSpeed = typedArray.getInt(R.styleable.SlidingPanel_speed, Utilities.DEFAULT_ANIMATION_SPEED);
+        attrInterpolator = typedArray.getNonResourceString(R.styleable.SlidingPanel_interpolator);
+        attrDirection = typedArray.getNonResourceString(R.styleable.SlidingPanel_direction);
 
         typedArray.recycle();
 

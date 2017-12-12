@@ -1,1 +1,1 @@
-include ':app', ':mementosettingspanel'
+include ':app', ':mementosettingspanel', ':animatabletextview'

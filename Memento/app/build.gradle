@@ -55,4 +55,5 @@ dependencies {
     compile 'com.github.RELEX-Group:SlidingPanel:0.2'
     //PagerIndicator
     compile 'com.romandanylyk:pageindicatorview:0.2.0@aar'
+    implementation project(':animatabletextview')
 }
