@@ -55,5 +55,7 @@ dependencies {
     compile 'com.github.RELEX-Group:SlidingPanel:0.2'
     //PagerIndicator
     compile 'com.romandanylyk:pageindicatorview:0.2.0@aar'
-    implementation project(':animatabletextview')
+    //HTextView https://github.com/hanks-zyh/HTextView
+    compile 'com.hanks:htextview-base:0.1.2'
+    compile 'com.hanks:htextview-rainbow:0.1.2'
 }

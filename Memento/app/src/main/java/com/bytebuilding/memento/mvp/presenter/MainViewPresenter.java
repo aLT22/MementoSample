@@ -41,12 +41,9 @@ public class MainViewPresenter extends MvpPresenter<MainView> {
                         .observable()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Consumer<Object>() {
-                            @Override
-                            public void accept(Object o) throws Exception {
-                                if (o instanceof UiEvents.ShowSettingsEvent) {
-                                    getViewState().showSettings();
-                                }
+                        .subscribe(o -> {
+                            if (o instanceof UiEvents.ShowSettingsEvent) {
+                                getViewState().showSettings();
                             }
                         })
         );

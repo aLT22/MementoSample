@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="AnimatableTextView">
+    <declare-styleable name="ColorAnimatableTextView">
         <attr name="colorSpace" format="dimension"/>
         <attr name="colorSpeed" format="dimension"/>
     </declare-styleable>

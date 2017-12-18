@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -16,6 +17,7 @@ import com.bytebuilding.memento.ui.fragment.content.EmptyContentFragment;
 import com.bytebuilding.memento.ui.fragment.content.MementoListFragment;
 import com.bytebuilding.memento.utils.AppUtilities;
 import com.bytebuilding.memento.utils.MementoApplication;
+import com.hanks.htextview.rainbow.RainbowTextView;
 
 import javax.inject.Inject;
 
@@ -95,6 +97,21 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         t.start();
     }
 
+    private void showAppropriateFragment(Fragment fragmentInstance, String tag) {
+        int fragmentsInBackStack = getSupportFragmentManager().getBackStackEntryCount();
+        if (fragmentsInBackStack == 0) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.fl_fragment_container, fragmentInstance, tag)
+                    .commit();
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fl_fragment_container, fragmentInstance, tag)
+                    .commit();
+        }
+    }
+
     @OnClick(R.id.fab)
     public void onFabCLick() {
         MementoApplication.bus().send(new UiEvents.ShowSettingsEvent());
@@ -102,34 +119,12 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
 
     @Override
     public void showMementosScreen() {
-        int fragmentsInBackStack = getSupportFragmentManager().getBackStackEntryCount();
-        if (fragmentsInBackStack == 0) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.fl_fragment_container, MementoListFragment.newInstance(), MementoApplication.TAG)
-                    .commit();
-        } else {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fl_fragment_container, MementoListFragment.newInstance(), MementoListFragment.TAG)
-                    .commit();
-        }
+        showAppropriateFragment(MementoListFragment.newInstance(), MementoListFragment.TAG);
     }
 
     @Override
     public void showEmptyScreen() {
-        int fragmentsInBackStack = getSupportFragmentManager().getBackStackEntryCount();
-        if (fragmentsInBackStack == 0) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.fl_fragment_container, EmptyContentFragment.newInstance(), EmptyContentFragment.TAG)
-                    .commit();
-        } else {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fl_fragment_container, EmptyContentFragment.newInstance(), EmptyContentFragment.TAG)
-                    .commit();
-        }
+        showAppropriateFragment(EmptyContentFragment.newInstance(), EmptyContentFragment.TAG);
     }
 
     @Override
