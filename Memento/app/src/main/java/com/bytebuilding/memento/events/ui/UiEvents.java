@@ -16,4 +16,7 @@ public class UiEvents {
     public static class ShowSettingsEvent {
     }
 
+    public static class AnimateFabEvent {
+    }
+
 }

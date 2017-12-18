@@ -44,6 +44,8 @@ public class MainViewPresenter extends MvpPresenter<MainView> {
                         .subscribe(o -> {
                             if (o instanceof UiEvents.ShowSettingsEvent) {
                                 getViewState().showSettings();
+                            } else if (o instanceof UiEvents.AnimateFabEvent) {
+                                getViewState().startRecording();
                             }
                         })
         );
