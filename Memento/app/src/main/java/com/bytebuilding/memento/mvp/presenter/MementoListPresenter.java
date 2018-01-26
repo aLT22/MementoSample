@@ -59,46 +59,38 @@ public class MementoListPresenter extends MvpPresenter<MementoListView> {
                         .bus()
                         .observable()
                         .subscribeOn(Schedulers.io())
-                        .subscribe(new Consumer<Object>() {
-                            @Override
-                            public void accept(Object o) throws Exception {
-                                if (o instanceof DataEvents.DataWasFetchedEvent) {
-                                    Observable
-                                            .fromCallable(new Callable<DiffUtil.DiffResult>() {
-                                                @Override
-                                                public DiffUtil.DiffResult call() throws Exception {
-                                                    return сhangesResult();
-                                                }
-                                            })
-                                            .subscribeOn(Schedulers.io())
-                                            .observeOn(AndroidSchedulers.mainThread())
-                                            .subscribe(new Observer<DiffUtil.DiffResult>() {
-                                                @Override
-                                                public void onSubscribe(Disposable d) {
+                        .subscribe(o -> {
+                            if (o instanceof DataEvents.DataWasFetchedEvent) {
+                                Observable
+                                        .fromCallable(this::сhangesResult)
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe(new Observer<DiffUtil.DiffResult>() {
+                                            @Override
+                                            public void onSubscribe(Disposable d) {
 
-                                                }
+                                            }
 
-                                                @Override
-                                                public void onNext(DiffUtil.DiffResult diffResult) {
-                                                    mAdapter.setList(mModel.getmMementos());
-                                                    diffResult.dispatchUpdatesTo(mAdapter);
-                                                }
+                                            @Override
+                                            public void onNext(DiffUtil.DiffResult diffResult) {
+                                                mAdapter.setList(mModel.getmMementos());
+                                                diffResult.dispatchUpdatesTo(mAdapter);
+                                            }
 
-                                                @Override
-                                                public void onError(Throwable e) {
-                                                    Log.e(TAG, "onError: " + e.getMessage());
-                                                    getViewState().hideProgressBar();
-                                                }
+                                            @Override
+                                            public void onError(Throwable e) {
+                                                Log.e(TAG, "onError: " + e.getMessage());
+                                                getViewState().hideProgressBar();
+                                            }
 
-                                                @Override
-                                                public void onComplete() {
-                                                    getViewState().showMementosList();
-                                                    getViewState().hideProgressBar();
-                                                }
-                                            });
-                                } else if (o instanceof UiEvents.ShowSettingsEvent) {
-                                    getViewState().showSettings();
-                                }
+                                            @Override
+                                            public void onComplete() {
+                                                getViewState().showMementosList();
+                                                getViewState().hideProgressBar();
+                                            }
+                                        });
+                            } else if (o instanceof UiEvents.ShowSettingsEvent) {
+                                getViewState().showSettings();
                             }
                         })
         );

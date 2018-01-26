@@ -38,19 +38,9 @@ public class MementoModel {
     }
 
     public void setFakeMementos() {
-        Observable.fromCallable(new Callable<List<Memento>>() {
-            @Override
-            public List<Memento> call() throws Exception {
-                return getFakeData();
-            }
-        })
+        Observable.fromCallable(() -> getFakeData())
                 .subscribeOn(Schedulers.io())
-                .flatMap(new Function<List<Memento>, ObservableSource<Memento>>() {
-                    @Override
-                    public ObservableSource<Memento> apply(List<Memento> mementos) throws Exception {
-                        return Observable.fromIterable(mementos);
-                    }
-                })
+                .flatMap(Observable::fromIterable)
                 .subscribe(new Observer<Memento>() {
                     @Override
                     public void onSubscribe(Disposable d) {
