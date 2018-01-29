@@ -67,6 +67,7 @@ public class MementoListFragment extends MvpAppCompatFragment implements Memento
         super.onCreate(savedInstanceState);
 
         MementoApplication.getAppComponent().inject(this);
+        getLifecycle().addObserver(mPresenter);
     }
 
     @Override

@@ -26,3 +26,30 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    /*App dependencies*/
+    //Support libraries versions
+    supportVersion = "26.1.0"
+    constraintVersion = "1.0.2"
+
+    //Rx libraries versions
+    rxAndroidVersion = "2.0.1"
+    rxJavaVersion = "2.1.5"
+
+    //Dagger libraries versions
+    daggerVersion = "2.12"
+
+    //ButterKnife libraries versions
+    butterknifeVersion = "8.8.1"
+
+    //Moxy libraries versions
+    moxyVersion = "1.5.3"
+
+    //Settings panel libraries versions
+    settingsPanelVersion = "0.2"
+
+    //PagerIndicator libraries versions
+    pagerIndicatorVersion = "0.2.0@aar"
+
+}

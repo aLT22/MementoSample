@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bytebuilding.memento.R;
-import com.bytebuilding.memento.mvp.model.Memento;
+import com.bytebuilding.memento.mvp.model.MementoDemo;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,11 +25,11 @@ public class MementoRecyclerAdapter extends RecyclerView.Adapter<MementoRecycler
     private static final String TAG = MementoRecyclerAdapter.class.getSimpleName();
 
     private Context mContext;
-    private List<Memento> mList;
+    private List<MementoDemo> mList;
 
     private OnItemClickDelegate mDelegate;
 
-    public MementoRecyclerAdapter(Context context, List<Memento> list) {
+    public MementoRecyclerAdapter(Context context, List<MementoDemo> list) {
         this.mContext = context;
         this.mList = list;
     }
@@ -38,13 +38,13 @@ public class MementoRecyclerAdapter extends RecyclerView.Adapter<MementoRecycler
         this.mDelegate = delegate;
     }
 
-    public void setList(List<Memento> list) {
+    public void setList(List<MementoDemo> list) {
         this.mList = new LinkedList<>();
 
         mList.addAll(list);
     }
 
-    public List<Memento> getList() {
+    public List<MementoDemo> getList() {
         return this.mList;
     }
 
@@ -57,7 +57,7 @@ public class MementoRecyclerAdapter extends RecyclerView.Adapter<MementoRecycler
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Memento item = mList.get(position);
+        final MementoDemo item = mList.get(position);
 
         holder.mTitle.setText(item.getTitle());
         holder.mDescription.setText(item.getDescription());
@@ -79,7 +79,7 @@ public class MementoRecyclerAdapter extends RecyclerView.Adapter<MementoRecycler
     }
 
     public interface OnItemClickDelegate {
-        void onItemClick(Memento item);
+        void onItemClick(MementoDemo item);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

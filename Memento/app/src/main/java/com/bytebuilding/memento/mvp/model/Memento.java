@@ -1,24 +1,53 @@
 package com.bytebuilding.memento.mvp.model;
 
+import java.util.Arrays;
+import java.util.Date;
+
 /**
- * Created by Turkin A. on 12.11.2017.
+ * Created by Turkin A. on 26.01.2018.
  */
 
 public class Memento {
+
+    private long id;
+
+    byte[] content;
 
     String title;
 
     String description;
 
-    String date;
+    Date date;
 
-    String path;
+    public Memento() {
+        this.content = new byte[0];
+        this.title = "Default title";
+        this.description = "Default description";
+        this.date = new Date(System.currentTimeMillis());
+    }
 
-    public Memento(String title, String description, String date, String path) {
+    public Memento(long id, byte[] content, String title, String description, Date date) {
+        this.id = id;
+        this.content = content;
         this.title = title;
         this.description = description;
         this.date = date;
-        this.path = path;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
     }
 
     public String getTitle() {
@@ -37,20 +66,37 @@ public class Memento {
         this.description = description;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public String getPath() {
-        return path;
+    public Memento buildId(long id) {
+        this.setId(id);
+        return this;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public Memento buildContent(byte[] content) {
+        this.setContent(content);
+        return this;
+    }
+
+    public Memento buildTitle(String title) {
+        this.setTitle(title);
+        return this;
+    }
+
+    public Memento buildDescription(String description) {
+        this.setDescription(description);
+        return this;
+    }
+
+    public Memento buildDate(Date date) {
+        this.setDate(date);
+        return this;
     }
 
     @Override
@@ -60,6 +106,8 @@ public class Memento {
 
         Memento memento = (Memento) o;
 
+        if (id != memento.id) return false;
+        if (!Arrays.equals(content, memento.content)) return false;
         if (title != null ? !title.equals(memento.title) : memento.title != null) return false;
         if (description != null ? !description.equals(memento.description) : memento.description != null) return false;
         return date != null ? date.equals(memento.date) : memento.date == null;
@@ -67,10 +115,11 @@ public class Memento {
 
     @Override
     public int hashCode() {
-        int result = title != null ? title.hashCode() : 0;
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + Arrays.hashCode(content);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (path != null ? path.hashCode() : 0);
         return result;
     }
 }

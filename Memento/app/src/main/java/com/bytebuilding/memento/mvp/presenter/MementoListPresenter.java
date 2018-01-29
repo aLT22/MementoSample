@@ -1,5 +1,8 @@
 package com.bytebuilding.memento.mvp.presenter;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.support.v7.util.DiffUtil;
 import android.util.Log;
 
@@ -13,8 +16,6 @@ import com.bytebuilding.memento.ui.adapter.MementoRecyclerAdapter;
 import com.bytebuilding.memento.utils.MementoApplication;
 import com.bytebuilding.memento.utils.MementoDiffUtilsCallback;
 
-import java.util.concurrent.Callable;
-
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
@@ -22,7 +23,6 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -30,7 +30,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 @InjectViewState
-public class MementoListPresenter extends MvpPresenter<MementoListView> {
+public class MementoListPresenter extends MvpPresenter<MementoListView> implements LifecycleObserver {
 
     public static final String TAG = MementoListPresenter.class.getSimpleName();
 
@@ -73,7 +73,7 @@ public class MementoListPresenter extends MvpPresenter<MementoListView> {
 
                                             @Override
                                             public void onNext(DiffUtil.DiffResult diffResult) {
-                                                mAdapter.setList(mModel.getmMementos());
+                                                mAdapter.setList(mModel.getmMementoDemos());
                                                 diffResult.dispatchUpdatesTo(mAdapter);
                                             }
 
@@ -98,17 +98,15 @@ public class MementoListPresenter extends MvpPresenter<MementoListView> {
 
     private DiffUtil.DiffResult сhangesResult() {
         MementoDiffUtilsCallback diffUtilsCallback =
-                new MementoDiffUtilsCallback(mAdapter.getList(), mModel.getmMementos());
+                new MementoDiffUtilsCallback(mAdapter.getList(), mModel.getmMementoDemos());
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffUtilsCallback, true);
 
         return diffResult;
     }
 
-    @Override
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
         mModel.freeMemory();
         mDisposable.dispose();
-
-        super.onDestroy();
     }
 }

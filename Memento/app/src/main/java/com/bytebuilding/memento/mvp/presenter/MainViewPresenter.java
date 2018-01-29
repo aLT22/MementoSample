@@ -1,5 +1,10 @@
 package com.bytebuilding.memento.mvp.presenter;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.OnLifecycleEvent;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.bytebuilding.memento.events.ui.UiEvents;
@@ -18,7 +23,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 @InjectViewState
-public class MainViewPresenter extends MvpPresenter<MainView> {
+public class MainViewPresenter extends MvpPresenter<MainView> implements LifecycleObserver{
 
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
@@ -26,6 +31,7 @@ public class MainViewPresenter extends MvpPresenter<MainView> {
         catcherEvents();
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void setFragment() {
         if (AppUtilities.isFolderEmpty()) {
             getViewState().showEmptyScreen();
@@ -51,10 +57,8 @@ public class MainViewPresenter extends MvpPresenter<MainView> {
         );
     }
 
-    @Override
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
-        mDisposable.dispose();
-
-        super.onDestroy();
+        mDisposable.clear();
     }
 }

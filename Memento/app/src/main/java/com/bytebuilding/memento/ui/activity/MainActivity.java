@@ -10,14 +10,11 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.LinearLayout;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.bytebuilding.memento.R;
 import com.bytebuilding.memento.events.ui.UiEvents;
 import com.bytebuilding.memento.mvp.presenter.MainViewPresenter;
 import com.bytebuilding.memento.mvp.view.MainView;
@@ -25,6 +22,7 @@ import com.bytebuilding.memento.ui.fragment.content.EmptyContentFragment;
 import com.bytebuilding.memento.ui.fragment.content.MementoListFragment;
 import com.bytebuilding.memento.utils.AppUtilities;
 import com.bytebuilding.memento.utils.MementoApplication;
+import com.bytebuilding.memento.R;
 
 import javax.inject.Inject;
 
@@ -81,7 +79,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         mNativeFabCoordX = mFab.getWidth();
         mNativeFabCoordY = mFab.getHeight();
 
-        mPresenter.setFragment();
+        getLifecycle().addObserver(mPresenter);
     }
 
     @Override

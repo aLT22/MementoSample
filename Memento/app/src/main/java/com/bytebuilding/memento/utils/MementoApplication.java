@@ -3,12 +3,12 @@ package com.bytebuilding.memento.utils;
 import android.app.Application;
 import android.util.Log;
 
-import com.bytebuilding.memento.R;
 import com.bytebuilding.memento.di.component.AppComponent;
 import com.bytebuilding.memento.di.component.DaggerAppComponent;
 import com.bytebuilding.memento.di.module.ApplicationContextModule;
 import com.bytebuilding.memento.events.ui.UiEvents;
 import com.bytebuilding.memento.rx.MementoRxBus;
+import com.bytebuilding.memento.R;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -50,7 +50,8 @@ public class MementoApplication extends Application {
                     MementoApplication.bus().send(new UiEvents.ChangeArrowColorEvent());
                 });
 
-        appFolderCreation();
+        //appFolderCreation();
+        setRealmSettings();
     }
 
     private void appFolderCreation() {
@@ -75,5 +76,9 @@ public class MementoApplication extends Application {
                 .builder()
                 .applicationContextModule(new ApplicationContextModule(this))
                 .build();
+    }
+
+    private void setRealmSettings() {
+
     }
 }

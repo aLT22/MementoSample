@@ -34,7 +34,7 @@ public class AppUtilities {
         private Constants() {
         }
 
-        public static final String APP_NAME = "Memento";
+        public static final String APP_NAME = "MementoDemo";
 
         //Shared preferences constants
         public static final String SHARED_PREFERENCES_NAME = "MementoPreferences";

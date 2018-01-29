@@ -22,7 +22,7 @@ public class RecyclerViewAdapterModule {
     @Singleton
     MementoRecyclerAdapter provideRecyclerAdapter(@Named("ApplicationContextModule") Context context,
                                                   @Named("MementoModelModule") MementoModel model) {
-        return new MementoRecyclerAdapter(context, model.getmMementos());
+        return new MementoRecyclerAdapter(context, model.getmMementoDemos());
     }
 
 }

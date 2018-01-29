@@ -9,16 +9,13 @@ import com.bytebuilding.memento.utils.MementoApplication;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -29,7 +26,7 @@ public class MementoModel {
 
     public static final String TAG = MementoModel.class.getSimpleName();
 
-    private List<Memento> mMementos = new LinkedList<>();
+    private List<MementoDemo> mMementoDemos = new LinkedList<>();
 
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
@@ -41,15 +38,15 @@ public class MementoModel {
         Observable.fromCallable(() -> getFakeData())
                 .subscribeOn(Schedulers.io())
                 .flatMap(Observable::fromIterable)
-                .subscribe(new Observer<Memento>() {
+                .subscribe(new Observer<MementoDemo>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Memento memento) {
-                        mMementos.add(memento);
+                    public void onNext(MementoDemo mementoDemo) {
+                        mMementoDemos.add(mementoDemo);
                     }
 
                     @Override
@@ -66,20 +63,20 @@ public class MementoModel {
                 });
     }
 
-    private List<Memento> getFakeData() {
-        List<Memento> mementos = new LinkedList<>();
+    private List<MementoDemo> getFakeData() {
+        List<MementoDemo> mementoDemos = new LinkedList<>();
         for (int i = 0; i < 1000; i++) {
-            mementos.add(new Memento("Title " + String.valueOf(i),
+            mementoDemos.add(new MementoDemo("Title " + String.valueOf(i),
                     "Description " + String.valueOf(i),
                     "Date " + String.valueOf(i),
                     Environment.getExternalStorageDirectory() + File.pathSeparator + AppUtilities.Constants.APP_NAME));
         }
 
-        return mementos;
+        return mementoDemos;
     }
 
-    public List<Memento> getmMementos() {
-        return this.mMementos;
+    public List<MementoDemo> getmMementoDemos() {
+        return this.mMementoDemos;
     }
 
     public void freeMemory() {

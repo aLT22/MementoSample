@@ -2,10 +2,9 @@ package com.bytebuilding.memento.utils;
 
 import android.support.v7.util.DiffUtil;
 
-import com.bytebuilding.memento.mvp.model.Memento;
+import com.bytebuilding.memento.mvp.model.MementoDemo;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by Turkin A. on 13.11.2017.
@@ -15,10 +14,10 @@ public class MementoDiffUtilsCallback extends DiffUtil.Callback {
 
     public static final String TAG = MementoDiffUtilsCallback.class.getSimpleName();
 
-    private List<Memento> oldList;
-    private List<Memento> newList;
+    private List<MementoDemo> oldList;
+    private List<MementoDemo> newList;
 
-    public MementoDiffUtilsCallback(List<Memento> oldList, List<Memento> newList) {
+    public MementoDiffUtilsCallback(List<MementoDemo> oldList, List<MementoDemo> newList) {
         this.oldList = oldList;
         this.newList = newList;
     }
@@ -35,18 +34,18 @@ public class MementoDiffUtilsCallback extends DiffUtil.Callback {
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        Memento oldMemento = oldList.get(oldItemPosition);
-        Memento newMemento = newList.get(newItemPosition);
+        MementoDemo oldMementoDemo = oldList.get(oldItemPosition);
+        MementoDemo newMementoDemo = newList.get(newItemPosition);
 
-        return oldMemento.getTitle().equals(newMemento.getTitle())
-                && oldMemento.getDate().equals(newMemento.getDate());
+        return oldMementoDemo.getTitle().equals(newMementoDemo.getTitle())
+                && oldMementoDemo.getDate().equals(newMementoDemo.getDate());
     }
 
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        Memento oldMemento = oldList.get(oldItemPosition);
-        Memento newMemento = newList.get(newItemPosition);
+        MementoDemo oldMementoDemo = oldList.get(oldItemPosition);
+        MementoDemo newMementoDemo = newList.get(newItemPosition);
 
-        return oldMemento.equals(newMemento);
+        return oldMementoDemo.equals(newMementoDemo);
     }
 }

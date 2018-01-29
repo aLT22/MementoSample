@@ -1,5 +1,9 @@
 package com.bytebuilding.memento.mvp.presenter;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.OnLifecycleEvent;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.bytebuilding.memento.mvp.view.OnboardingView;
@@ -14,7 +18,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 @InjectViewState
-public class OnboardingViewPresenter extends MvpPresenter<OnboardingView> {
+public class OnboardingViewPresenter extends MvpPresenter<OnboardingView> implements LifecycleObserver {
 
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
@@ -32,6 +36,11 @@ public class OnboardingViewPresenter extends MvpPresenter<OnboardingView> {
                         .subscribe(o -> {
                         })
         );
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    public void onDestroy() {
+        mDisposable.clear();
     }
 
 }
