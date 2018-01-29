@@ -23,7 +23,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MementoApplication extends Application {
 
-    public static final String TAG = MementoApplication.class.getSimpleName();
+    public static final String TAG = "MementoApplication";
 
     private static MementoRxBus mBus;
 
@@ -51,7 +51,6 @@ public class MementoApplication extends Application {
                 });
 
         //appFolderCreation();
-        setRealmSettings();
     }
 
     private void appFolderCreation() {
@@ -76,9 +75,5 @@ public class MementoApplication extends Application {
                 .builder()
                 .applicationContextModule(new ApplicationContextModule(this))
                 .build();
-    }
-
-    private void setRealmSettings() {
-
     }
 }

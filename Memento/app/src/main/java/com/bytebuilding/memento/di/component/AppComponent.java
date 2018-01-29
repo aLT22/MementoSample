@@ -3,6 +3,7 @@ package com.bytebuilding.memento.di.component;
 import com.bytebuilding.memento.di.module.ApplicationContextModule;
 import com.bytebuilding.memento.di.module.MementoModelModule;
 import com.bytebuilding.memento.di.module.RecyclerViewAdapterModule;
+import com.bytebuilding.memento.di.module.RoomModule;
 import com.bytebuilding.memento.di.module.SharedPreferencesModule;
 import com.bytebuilding.memento.mvp.presenter.MementoListPresenter;
 import com.bytebuilding.memento.ui.activity.MainActivity;
@@ -21,7 +22,8 @@ import dagger.Component;
 @Component(modules = {ApplicationContextModule.class,
         SharedPreferencesModule.class,
         MementoModelModule.class,
-        RecyclerViewAdapterModule.class})
+        RecyclerViewAdapterModule.class,
+        RoomModule.class})
 public interface AppComponent {
 
     //Activities

@@ -6,6 +6,6 @@ package com.bytebuilding.memento.mvp.model;
 
 public class RealmDataManager extends DataManager {
 
-    public static final String TAG = RealmDataManager.class.getSimpleName();
+    public static final String TAG = "RealmDataManager";
 
 }

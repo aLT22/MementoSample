@@ -24,7 +24,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MementoModel {
 
-    public static final String TAG = MementoModel.class.getSimpleName();
+    public static final String TAG = "MementoModel";
 
     private List<MementoDemo> mMementoDemos = new LinkedList<>();
 

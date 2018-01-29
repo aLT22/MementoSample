@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.bytebuilding.memento.R;
 import com.bytebuilding.memento.events.ui.UiEvents;
 import com.bytebuilding.memento.mvp.presenter.MainViewPresenter;
 import com.bytebuilding.memento.mvp.view.MainView;
@@ -22,7 +23,6 @@ import com.bytebuilding.memento.ui.fragment.content.EmptyContentFragment;
 import com.bytebuilding.memento.ui.fragment.content.MementoListFragment;
 import com.bytebuilding.memento.utils.AppUtilities;
 import com.bytebuilding.memento.utils.MementoApplication;
-import com.bytebuilding.memento.R;
 
 import javax.inject.Inject;
 
@@ -30,11 +30,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import io.reactivex.disposables.CompositeDisposable;
 
 public class MainActivity extends MvpAppCompatActivity implements MainView {
 
-    public static final String TAG = MainActivity.class.getSimpleName();
+    public static final String TAG = "MainActivity";
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -56,8 +55,6 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
 
     @InjectPresenter
     MainViewPresenter mPresenter;
-
-    private CompositeDisposable mDisposable = new CompositeDisposable();
 
     private Unbinder mUnbinder = null;
 
@@ -84,9 +81,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
 
     @Override
     protected void onDestroy() {
-        mDisposable.dispose();
         mUnbinder.unbind();
-        mPresenter.onDestroy();
 
         super.onDestroy();
     }

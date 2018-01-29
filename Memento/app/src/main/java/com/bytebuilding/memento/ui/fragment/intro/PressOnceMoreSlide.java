@@ -29,7 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class PressOnceMoreSlide extends Fragment {
 
-    public static final String TAG = PressOnceMoreSlide.class.getSimpleName();
+    public static final String TAG = "PressOnceMoreSlide";
 
     @BindView(R.id.fab)
     FloatingActionButton mFab;

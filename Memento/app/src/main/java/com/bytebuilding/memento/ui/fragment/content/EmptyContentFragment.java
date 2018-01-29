@@ -14,7 +14,7 @@ import butterknife.Unbinder;
 
 public class EmptyContentFragment extends Fragment {
 
-    public static final String TAG = EmptyContentFragment.class.getSimpleName();
+    public static final String TAG = "EmptyContentFragment";
 
     private Unbinder mUnbinder = null;
 

@@ -56,4 +56,7 @@ dependencies {
     compile "com.github.RELEX-Group:SlidingPanel:$rootProject.ext.settingsPanelVersion"
     //PagerIndicator
     compile "com.romandanylyk:pageindicatorview:$rootProject.ext.pagerIndicatorVersion"
+    //Room ORM
+    compile "android.arch.persistence.room:runtime:$rootProject.ext.roomVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.ext.roomVersion"
 }

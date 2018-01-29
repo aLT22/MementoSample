@@ -14,7 +14,7 @@ import com.bytebuilding.memento.utils.AppUtilities;
 
 public class IntroductionSlideAnimator extends IntroAnimator {
 
-    public static final String TAG = IntroductionSlideAnimator.class.getSimpleName();
+    public static final String TAG = "IntroductionSlideAnimator";
 
     @Override
     public void animateSlide(View page, float position, @IdRes int resId, int animationValue) {

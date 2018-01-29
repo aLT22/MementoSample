@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 
 public class MementoRecyclerAdapter extends RecyclerView.Adapter<MementoRecyclerAdapter.ViewHolder> {
 
-    private static final String TAG = MementoRecyclerAdapter.class.getSimpleName();
+    private static final String TAG = "MementoRecyclerAdapter";
 
     private Context mContext;
     private List<MementoDemo> mList;

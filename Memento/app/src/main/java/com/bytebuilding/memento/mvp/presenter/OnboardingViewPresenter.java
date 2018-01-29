@@ -20,6 +20,8 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class OnboardingViewPresenter extends MvpPresenter<OnboardingView> implements LifecycleObserver {
 
+    public static final String TAG = "OnboardingViewPresenter";
+
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
     public OnboardingViewPresenter() {
@@ -39,7 +41,7 @@ public class OnboardingViewPresenter extends MvpPresenter<OnboardingView> implem
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    public void onDestroy() {
+    private void freeMemory() {
         mDisposable.clear();
     }
 

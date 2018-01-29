@@ -29,7 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class JustPressButtonSlide extends Fragment {
 
-    public static final String TAG = JustPressButtonSlide.class.getSimpleName();
+    public static final String TAG = "JustPressButtonSlide";
 
     @BindView(R.id.iv_arrow_down_4dp)
     ImageView mArrowDown4;

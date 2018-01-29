@@ -13,7 +13,7 @@ import com.bytebuilding.memento.utils.AppUtilities;
 
 public class StopRecordingSlideAnimator extends IntroAnimator {
 
-    public static final String TAG = StopRecordingSlideAnimator.class.getSimpleName();
+    public static final String TAG = "StopRecordingSlideAnimator";
 
     @Override
     public void animateSlide(View page, float position, @IdRes int resId, int animationValue) {

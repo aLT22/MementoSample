@@ -10,7 +10,7 @@ import java.io.File;
 
 public class AppUtilities {
 
-    public static final String TAG = AppUtilities.class.getSimpleName();
+    public static final String TAG = "AppUtilities";
 
     private AppUtilities() {
     }

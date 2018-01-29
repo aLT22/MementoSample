@@ -25,13 +25,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class OnboardingActivity extends AppCompatActivity implements OnboardingView {
 
-    public static final String TAG = OnboardingActivity.class.getSimpleName();
+    public static final String TAG = "OnboardingActivity";
 
     @BindView(R.id.vp_onboarding)
     ViewPager mOnboardingPager;
@@ -45,12 +42,10 @@ public class OnboardingActivity extends AppCompatActivity implements OnboardingV
     @InjectPresenter
     OnboardingViewPresenter mPresenter;
 
-    private CompositeDisposable mDisposable = new CompositeDisposable();
-
     private Unbinder mUnbinder = null;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         MementoApplication.getAppComponent().inject(this);
@@ -59,35 +54,14 @@ public class OnboardingActivity extends AppCompatActivity implements OnboardingV
 
         mUnbinder = ButterKnife.bind(this);
 
-        catchEvents();
-
         setTutorialSlides();
-
-        getLifecycle().addObserver(mPresenter);
     }
 
     @Override
     protected void onDestroy() {
-        mDisposable.dispose();
         mUnbinder.unbind();
 
         super.onDestroy();
-    }
-
-    private void catchEvents() {
-        catchUiEvents();
-    }
-
-    private void catchUiEvents() {
-        mDisposable.add(
-                MementoApplication
-                        .bus()
-                        .observable()
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(o -> {
-                        })
-        );
     }
 
     private void setTutorialSlides() {

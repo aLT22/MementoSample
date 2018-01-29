@@ -20,7 +20,7 @@ import com.bytebuilding.memento.utils.AppUtilities;
 
 public class OnboardingViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.PageTransformer {
 
-    public static final String TAG = OnboardingViewPagerAdapter.class.getSimpleName();
+    public static final String TAG = "OnboardingViewPagerAdapter";
 
     public OnboardingViewPagerAdapter(FragmentManager fm) {
         super(fm);

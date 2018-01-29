@@ -13,7 +13,7 @@ import com.bytebuilding.memento.utils.AppUtilities;
 
 public class JustPressButtonSlideAnimator extends IntroAnimator {
 
-    public static final String TAG = JustPressButtonSlideAnimator.class.getSimpleName();
+    public static final String TAG = "JustPressButtonSlideAnimator";
 
     @Override
     public void animateSlide(View page, float position, @IdRes int resId, int animationValue) {

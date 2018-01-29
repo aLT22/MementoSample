@@ -21,7 +21,7 @@ import butterknife.Unbinder;
 
 public class StopRecordingSlide extends Fragment {
 
-    public static final String TAG = StopRecordingSlide.class.getCanonicalName();
+    public static final String TAG = "StopRecordingSlide";
 
     @BindView(R.id.tv_description_stop_recording)
     TextView mDescription;

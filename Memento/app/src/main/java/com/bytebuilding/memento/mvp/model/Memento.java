@@ -1,5 +1,9 @@
 package com.bytebuilding.memento.mvp.model;
 
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import java.util.Arrays;
 import java.util.Date;
 
@@ -7,8 +11,10 @@ import java.util.Date;
  * Created by Turkin A. on 26.01.2018.
  */
 
+@Entity
 public class Memento {
 
+    @PrimaryKey(autoGenerate = true)
     private long id;
 
     byte[] content;
@@ -17,6 +23,7 @@ public class Memento {
 
     String description;
 
+    @Embedded
     Date date;
 
     public Memento() {

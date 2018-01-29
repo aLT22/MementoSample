@@ -13,7 +13,7 @@ import com.bytebuilding.memento.utils.AppUtilities;
 
 public class PressOnceMoreSlideAnimator extends IntroAnimator {
 
-    public static final String TAG = PressOnceMoreSlideAnimator.class.getSimpleName();
+    public static final String TAG = "PressOnceMoreSlideAnimator";
 
     @Override
     public void animateSlide(View page, float position, @IdRes int resId, int animationValue) {

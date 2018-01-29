@@ -12,7 +12,7 @@ import java.util.List;
 
 public class MementoDiffUtilsCallback extends DiffUtil.Callback {
 
-    public static final String TAG = MementoDiffUtilsCallback.class.getSimpleName();
+    public static final String TAG = "MementoDiffUtilsCallback";
 
     private List<MementoDemo> oldList;
     private List<MementoDemo> newList;

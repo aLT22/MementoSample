@@ -21,7 +21,7 @@ import butterknife.Unbinder;
 
 public class IntroductionSlide extends Fragment {
 
-    public static final String TAG = IntroductionSlide.class.getSimpleName();
+    public static final String TAG = "IntroductionSlide";
 
     @BindView(R.id.iv_speaking)
     ImageView mSpeakingHead;

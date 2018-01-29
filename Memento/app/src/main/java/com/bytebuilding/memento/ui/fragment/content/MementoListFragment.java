@@ -26,7 +26,7 @@ import butterknife.Unbinder;
 
 public class MementoListFragment extends MvpAppCompatFragment implements MementoListView {
 
-    public static final String TAG = MementoListFragment.class.getSimpleName();
+    public static final String TAG = "MementoListFragment";
 
     @BindView(R.id.rv_memento_list)
     RecyclerView mList;

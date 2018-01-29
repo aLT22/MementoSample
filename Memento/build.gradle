@@ -52,4 +52,7 @@ ext {
     //PagerIndicator libraries versions
     pagerIndicatorVersion = "0.2.0@aar"
 
+    //Room ORM libraries versions
+    roomVersion = "1.0.0"
+
 }

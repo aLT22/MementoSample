@@ -32,7 +32,7 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class MementoListPresenter extends MvpPresenter<MementoListView> implements LifecycleObserver {
 
-    public static final String TAG = MementoListPresenter.class.getSimpleName();
+    public static final String TAG = "MementoListPresenter";
 
     @Inject
     MementoModel mModel;
@@ -105,7 +105,7 @@ public class MementoListPresenter extends MvpPresenter<MementoListView> implemen
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    public void onDestroy() {
+    private void freeMemory() {
         mModel.freeMemory();
         mDisposable.dispose();
     }

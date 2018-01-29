@@ -6,6 +6,6 @@ package com.bytebuilding.memento.mvp.model;
 
 public abstract class DataManager {
 
-    public static final String TAG = DataManager.class.getSimpleName();
+    public static final String TAG = "DataManager";
 
 }
