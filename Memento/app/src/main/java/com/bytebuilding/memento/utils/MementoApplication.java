@@ -55,15 +55,6 @@ public class MementoApplication extends Application {
                 });
     }
 
-    private void appFolderCreation() {
-        Log.e(TAG, "appFolderCreation: " + this.getFilesDir());
-        File folder = new File(this.getFilesDir() + getResources().getString(R.string.app_name));
-        boolean success = true;
-        if (!folder.exists()) {
-            success = folder.mkdir();
-        }
-    }
-
     public static MementoRxBus bus() {
         return mBus;
     }
