@@ -73,6 +73,7 @@ public class MementoApplication extends Application {
                 .sharedPreferencesModule(new SharedPreferencesModule())
                 .roomDatabaseModule(new RoomDatabaseModule())
                 .mediaRecorderModule(new MediaRecorderModule())
+                .roomDatabaseModule(new RoomDatabaseModule())
                 .build();
     }
 }

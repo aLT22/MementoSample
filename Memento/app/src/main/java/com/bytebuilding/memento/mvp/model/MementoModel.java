@@ -1,7 +1,5 @@
 package com.bytebuilding.memento.mvp.model;
 
-import android.arch.persistence.room.Room;
-import android.content.Context;
 import android.os.Environment;
 
 import com.bytebuilding.memento.events.data.DataEvents;
@@ -12,23 +10,14 @@ import com.bytebuilding.memento.utils.MementoApplication;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
-import io.reactivex.Single;
-import io.reactivex.SingleEmitter;
-import io.reactivex.SingleObserver;
-import io.reactivex.SingleOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.BiConsumer;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -95,10 +84,6 @@ public class MementoModel {
         return this.mMementoDemos;
     }
 
-    public void freeMemory() {
-        mDisposable.dispose();
-    }
-
     public void isDatabaseEmpty() {
         mDisposable
                 .add(
@@ -122,6 +107,10 @@ public class MementoModel {
                                             .send(new DataEvents.DatabaseIsEmptyEvent());
                                 }))
                 );
+    }
+
+    public void freeMemory() {
+        mDisposable.dispose();
     }
 
 }

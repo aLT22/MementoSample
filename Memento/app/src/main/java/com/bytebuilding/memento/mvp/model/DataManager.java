@@ -8,4 +8,6 @@ public abstract class DataManager {
 
     public static final String TAG = "DataManager";
 
+    public abstract void saveMemento(Memento memento);
+
 }
