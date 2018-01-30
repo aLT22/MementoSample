@@ -2,7 +2,6 @@ package com.bytebuilding.memento.mvp.presenter;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.OnLifecycleEvent;
 
 import com.arellomobile.mvp.InjectViewState;
@@ -11,15 +10,13 @@ import com.bytebuilding.memento.events.data.DataEvents;
 import com.bytebuilding.memento.events.ui.UiEvents;
 import com.bytebuilding.memento.mvp.model.MementoModel;
 import com.bytebuilding.memento.mvp.view.MainView;
-import com.bytebuilding.memento.utils.AppUtilities;
 import com.bytebuilding.memento.utils.MementoApplication;
+import com.bytebuilding.memento.utils.RecordingStates;
 
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -36,9 +33,12 @@ public class MainViewPresenter extends MvpPresenter<MainView> implements Lifecyc
 
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
+    private RecordingStates mRecordingStates;
+
     public MainViewPresenter() {
-        catcherEvents();
         MementoApplication.getAppComponent().inject(this);
+        catcherEvents();
+        mRecordingStates = RecordingStates.DEFAULT_STATE;
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
@@ -79,10 +79,32 @@ public class MainViewPresenter extends MvpPresenter<MainView> implements Lifecyc
                             if (o instanceof UiEvents.ShowSettingsEvent) {
                                 getViewState().showSettings();
                             } else if (o instanceof UiEvents.AnimateFabEvent) {
-                                getViewState().startRecording();
+                                switch (mRecordingStates) {
+                                    case DEFAULT_STATE:
+                                        getViewState().startRecording();
+                                        mRecordingStates = RecordingStates.START_RECORDING;
+                                        break;
+
+                                    case START_RECORDING:
+                                        getViewState().pauseRecording();
+                                        mRecordingStates = RecordingStates.PAUSE_RECORDING;
+                                        break;
+
+                                    case PAUSE_RECORDING:
+                                        getViewState().startRecording();
+                                        mRecordingStates = RecordingStates.START_RECORDING;
+                                        break;
+                                }
+                            } else if (o instanceof UiEvents.StopRecordingFabEvent) {
+                                getViewState().stopRecording();
+                                mRecordingStates = RecordingStates.DEFAULT_STATE;
                             }
                         })
         );
+    }
+
+    public RecordingStates getmRecordingStates() {
+        return mRecordingStates;
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)

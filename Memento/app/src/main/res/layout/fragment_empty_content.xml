@@ -23,7 +23,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="12dp"
         android:gravity="center"
-        android:text="You don't have any mementoDemos!"
+        android:text="You don't have any mementos!"
         android:textColor="@color/colorGrayDark"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"

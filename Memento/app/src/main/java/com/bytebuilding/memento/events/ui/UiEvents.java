@@ -19,4 +19,7 @@ public class UiEvents {
     public static class AnimateFabEvent {
     }
 
+    public static class StopRecordingFabEvent {
+    }
+
 }

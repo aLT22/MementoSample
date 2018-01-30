@@ -53,8 +53,6 @@ public class MementoApplication extends Application {
                     }
                     MementoApplication.bus().send(new UiEvents.ChangeArrowColorEvent());
                 });
-
-        //appFolderCreation();
     }
 
     private void appFolderCreation() {

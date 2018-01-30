@@ -13,7 +13,10 @@ import com.bytebuilding.memento.utils.AppUtilities;
 
 public abstract class IntroAnimator {
 
-    public void animateSlide(View page, float position, @IdRes int resId, int animationValue) {
+    public void animateSlide(View page,
+                             float position,
+                             @IdRes int resId,
+                             int animationValue) {
         // Get the page index from the tag. This makes
         // it possible to know which page index you're
         // currently transforming - and that can be used
