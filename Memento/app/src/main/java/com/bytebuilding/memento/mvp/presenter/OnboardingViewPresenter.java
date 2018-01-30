@@ -41,7 +41,7 @@ public class OnboardingViewPresenter extends MvpPresenter<OnboardingView> implem
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    private void freeMemory() {
+    public void freeMemory() {
         mDisposable.clear();
     }
 

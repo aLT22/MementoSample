@@ -26,8 +26,7 @@ public class ApplicationContextModule {
 
     @Singleton
     @Provides
-    @Named("ApplicationContextModule")
-    Context provideContext() {
+    Application provideContext() {
         return this.mApplication;
     }
 

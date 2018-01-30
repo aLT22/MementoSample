@@ -3,8 +3,10 @@ package com.bytebuilding.memento.di.component;
 import com.bytebuilding.memento.di.module.ApplicationContextModule;
 import com.bytebuilding.memento.di.module.MementoModelModule;
 import com.bytebuilding.memento.di.module.RecyclerViewAdapterModule;
-import com.bytebuilding.memento.di.module.RoomModule;
+import com.bytebuilding.memento.di.module.RoomDatabaseModule;
 import com.bytebuilding.memento.di.module.SharedPreferencesModule;
+import com.bytebuilding.memento.mvp.model.MementoModel;
+import com.bytebuilding.memento.mvp.presenter.MainViewPresenter;
 import com.bytebuilding.memento.mvp.presenter.MementoListPresenter;
 import com.bytebuilding.memento.ui.activity.MainActivity;
 import com.bytebuilding.memento.ui.activity.OnboardingActivity;
@@ -23,7 +25,7 @@ import dagger.Component;
         SharedPreferencesModule.class,
         MementoModelModule.class,
         RecyclerViewAdapterModule.class,
-        RoomModule.class})
+        RoomDatabaseModule.class})
 public interface AppComponent {
 
     //Activities
@@ -36,5 +38,10 @@ public interface AppComponent {
 
     //Presenters
     void inject(MementoListPresenter presenter);
+
+    void inject(MainViewPresenter presenter);
+
+    //Model
+    void inject(MementoModel model);
 
 }

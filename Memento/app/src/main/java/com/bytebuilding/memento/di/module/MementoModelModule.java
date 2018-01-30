@@ -1,5 +1,8 @@
 package com.bytebuilding.memento.di.module;
 
+import android.app.Application;
+import android.content.Context;
+
 import com.bytebuilding.memento.mvp.model.MementoModel;
 
 import javax.inject.Named;
@@ -17,7 +20,6 @@ public class MementoModelModule {
 
     @Singleton
     @Provides
-    @Named("MementoModelModule")
     MementoModel provideMementoModel() {
         return new MementoModel();
     }

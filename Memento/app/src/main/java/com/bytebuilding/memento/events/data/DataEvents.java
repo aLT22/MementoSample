@@ -12,4 +12,10 @@ public class DataEvents {
     public static class DataWasFetchedEvent {
     }
 
+    public static class DatabaseIsEmptyEvent {
+    }
+
+    public static class DatabaseIsNotEmptyEvent {
+    }
+
 }

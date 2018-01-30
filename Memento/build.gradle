@@ -28,31 +28,34 @@ task clean(type: Delete) {
 }
 
 ext {
-    /*App dependencies*/
-    //Support libraries versions
+    /*App dependencies versions*/
+    //Support libraries
     supportVersion = "26.1.0"
     constraintVersion = "1.0.2"
 
-    //Rx libraries versions
+    //Rx libraries
     rxAndroidVersion = "2.0.1"
     rxJavaVersion = "2.1.5"
 
-    //Dagger libraries versions
+    //Dagger
     daggerVersion = "2.12"
 
-    //ButterKnife libraries versions
+    //ButterKnife
     butterknifeVersion = "8.8.1"
 
-    //Moxy libraries versions
+    //Moxy
     moxyVersion = "1.5.3"
 
-    //Settings panel libraries versions
+    //Settings panel
     settingsPanelVersion = "0.2"
 
-    //PagerIndicator libraries versions
+    //PagerIndicator
     pagerIndicatorVersion = "0.2.0@aar"
 
-    //Room ORM libraries versions
+    //Room ORM
     roomVersion = "1.0.0"
+
+    //LiveData
+    liveDataVersion = "1.0.0"
 
 }

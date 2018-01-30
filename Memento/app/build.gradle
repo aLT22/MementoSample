@@ -42,7 +42,9 @@ dependencies {
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxJavaVersion"
     //Dagger2
-    compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
+    compile "com.google.dagger:dagger-android:$rootProject.ext.daggerVersion"
+    compile "com.google.dagger:dagger-android-support:$rootProject.ext.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
     //ButterKnife
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
@@ -58,5 +60,9 @@ dependencies {
     compile "com.romandanylyk:pageindicatorview:$rootProject.ext.pagerIndicatorVersion"
     //Room ORM
     compile "android.arch.persistence.room:runtime:$rootProject.ext.roomVersion"
+    compile "android.arch.persistence.room:rxjava2:$rootProject.ext.roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.ext.roomVersion"
+    //LiveData
+    compile "android.arch.lifecycle:extensions:$rootProject.ext.liveDataVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.liveDataVersion"
 }

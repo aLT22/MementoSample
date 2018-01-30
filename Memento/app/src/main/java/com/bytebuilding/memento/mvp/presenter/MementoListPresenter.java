@@ -43,8 +43,8 @@ public class MementoListPresenter extends MvpPresenter<MementoListView> implemen
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
     public MementoListPresenter() {
-        MementoApplication.getAppComponent().inject(this);
         catcherEvents();
+        MementoApplication.getAppComponent().inject(this);
     }
 
     public void getMementosListFromModel() {
@@ -105,7 +105,7 @@ public class MementoListPresenter extends MvpPresenter<MementoListView> implemen
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    private void freeMemory() {
+    public void freeMemory() {
         mModel.freeMemory();
         mDisposable.dispose();
     }

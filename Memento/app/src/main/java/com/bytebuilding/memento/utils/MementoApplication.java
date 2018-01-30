@@ -3,12 +3,16 @@ package com.bytebuilding.memento.utils;
 import android.app.Application;
 import android.util.Log;
 
+import com.bytebuilding.memento.R;
 import com.bytebuilding.memento.di.component.AppComponent;
 import com.bytebuilding.memento.di.component.DaggerAppComponent;
 import com.bytebuilding.memento.di.module.ApplicationContextModule;
+import com.bytebuilding.memento.di.module.MementoModelModule;
+import com.bytebuilding.memento.di.module.RecyclerViewAdapterModule;
+import com.bytebuilding.memento.di.module.RoomDatabaseModule;
+import com.bytebuilding.memento.di.module.SharedPreferencesModule;
 import com.bytebuilding.memento.events.ui.UiEvents;
 import com.bytebuilding.memento.rx.MementoRxBus;
-import com.bytebuilding.memento.R;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -74,6 +78,10 @@ public class MementoApplication extends Application {
         sDaggerComponent = DaggerAppComponent
                 .builder()
                 .applicationContextModule(new ApplicationContextModule(this))
+                .mementoModelModule(new MementoModelModule())
+                .recyclerViewAdapterModule(new RecyclerViewAdapterModule())
+                .sharedPreferencesModule(new SharedPreferencesModule())
+                .roomDatabaseModule(new RoomDatabaseModule())
                 .build();
     }
 }

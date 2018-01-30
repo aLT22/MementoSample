@@ -12,7 +12,6 @@ import android.widget.ProgressBar;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.bytebuilding.memento.R;
-import com.bytebuilding.memento.mvp.model.MementoModel;
 import com.bytebuilding.memento.mvp.presenter.MementoListPresenter;
 import com.bytebuilding.memento.mvp.view.MementoListView;
 import com.bytebuilding.memento.ui.adapter.MementoRecyclerAdapter;
@@ -42,9 +41,6 @@ public class MementoListFragment extends MvpAppCompatFragment implements Memento
 
     @Inject
     MementoRecyclerAdapter mAdapter;
-
-    @Inject
-    MementoModel mModel;
 
     private Unbinder mUnbinder = null;
 
