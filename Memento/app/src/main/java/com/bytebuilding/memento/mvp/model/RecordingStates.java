@@ -1,4 +1,4 @@
-package com.bytebuilding.memento.utils;
+package com.bytebuilding.memento.mvp.model;
 
 /**
  * Created by Turkin A. on 30.01.2018.

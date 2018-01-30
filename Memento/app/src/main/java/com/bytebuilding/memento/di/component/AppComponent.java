@@ -1,6 +1,7 @@
 package com.bytebuilding.memento.di.component;
 
 import com.bytebuilding.memento.di.module.ApplicationContextModule;
+import com.bytebuilding.memento.di.module.MediaRecorderModule;
 import com.bytebuilding.memento.di.module.MementoModelModule;
 import com.bytebuilding.memento.di.module.RecyclerViewAdapterModule;
 import com.bytebuilding.memento.di.module.RoomDatabaseModule;
@@ -25,7 +26,8 @@ import dagger.Component;
         SharedPreferencesModule.class,
         MementoModelModule.class,
         RecyclerViewAdapterModule.class,
-        RoomDatabaseModule.class})
+        RoomDatabaseModule.class,
+        MediaRecorderModule.class})
 public interface AppComponent {
 
     //Activities

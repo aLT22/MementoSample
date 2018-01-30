@@ -3,6 +3,7 @@ package com.bytebuilding.memento.mvp.presenter;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.OnLifecycleEvent;
+import android.media.MediaRecorder;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
@@ -11,7 +12,7 @@ import com.bytebuilding.memento.events.ui.UiEvents;
 import com.bytebuilding.memento.mvp.model.MementoModel;
 import com.bytebuilding.memento.mvp.view.MainView;
 import com.bytebuilding.memento.utils.MementoApplication;
-import com.bytebuilding.memento.utils.RecordingStates;
+import com.bytebuilding.memento.mvp.model.RecordingStates;
 
 import javax.inject.Inject;
 
@@ -30,6 +31,9 @@ public class MainViewPresenter extends MvpPresenter<MainView> implements Lifecyc
 
     @Inject
     MementoModel mModel;
+
+    @Inject
+    MediaRecorder mAudioRecorder;
 
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
@@ -101,10 +105,6 @@ public class MainViewPresenter extends MvpPresenter<MainView> implements Lifecyc
                             }
                         })
         );
-    }
-
-    public RecordingStates getmRecordingStates() {
-        return mRecordingStates;
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
