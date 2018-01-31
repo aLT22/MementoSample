@@ -19,9 +19,9 @@ public class MediaRecorderModule {
     MediaRecorder provideMediaRecorder() {
         MediaRecorder mAudioRecorder = new MediaRecorder();
 
-        //mAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        //mAudioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        //mAudioRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+        mAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mAudioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mAudioRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
 
         return mAudioRecorder;
     }
