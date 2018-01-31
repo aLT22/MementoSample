@@ -1,12 +1,18 @@
 package com.bytebuilding.memento.ui.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -78,6 +84,35 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         mNativeFabCoordY = mFab.getHeight();
 
         getLifecycle().addObserver(mPresenter);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO},
+                        AppUtilities.Constants.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+            } else {
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case AppUtilities.Constants.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast
+                            .makeText(this, R.string.permission_granted, Toast.LENGTH_SHORT)
+                            .show();
+                } else {
+                    Toast
+                            .makeText(this, R.string.must_allow_permissions, Toast.LENGTH_SHORT)
+                            .show();
+                    finish();
+                }
+            }
+            // Add additional cases for other permissions you may have asked for
+        }
     }
 
     @Override

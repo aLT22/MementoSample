@@ -53,6 +53,10 @@ public class AppUtilities {
         public static final int PRESS_ONCE_MORE_VALUE = 2;
         public static final int STOP_RECORDING_VALUE = 3;
 
+        //Permissions' constants
+        public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 0;
+        public static final int MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 0;
+
     }
 
 }
