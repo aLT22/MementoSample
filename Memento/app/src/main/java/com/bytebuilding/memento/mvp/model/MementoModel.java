@@ -40,7 +40,8 @@ public class MementoModel {
     }
 
     public void setFakeMementos() {
-        Observable.fromCallable(this::getFakeData)
+        Observable
+                .fromCallable(this::getFakeData)
                 .subscribeOn(Schedulers.io())
                 .flatMap(Observable::fromIterable)
                 .subscribe(new Observer<MementoDemo>() {
